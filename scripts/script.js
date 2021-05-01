@@ -17,7 +17,7 @@ baseURL.search = new URLSearchParams({
   // const baseURL = new URL('https://www.cheapshark.com/api/1.0/deals');
   // const searchParams = new URLSearchParams(baseURL);
 
-  // searchParams.set('storeID', '1, 7');
+  // searchParams.set('storeID', '1');
 
 
 // Create namespace object
@@ -30,14 +30,14 @@ app.init = () => {
     app.getRandomGames();
   });
 
-
-
 }
 
 // Function to call API to get random games
 app.getRandomGames = (title) => {
   console.log(title);
   // baseURL.search.set('title', title);
+  // searchParams.append('title', title)
+  baseURL.searchParams.set('title', searchTitle.value)  
   fetch(baseURL)
     .then(response => response.json())
     .then(data => {
@@ -48,6 +48,8 @@ app.getRandomGames = (title) => {
 
     const getData = (list) => {
       console.log(list);
+      gamesList.innerHTML = '';
+
       list.forEach(deal => {
         const listItem = document.createElement('li');
         listItem.textContent = `${deal.title}`;
@@ -58,8 +60,6 @@ app.getRandomGames = (title) => {
     // setTimeout(getData(returnedList), 2000);
   }
 
-   
-    
 
 
 // Function to render results to the DOM
