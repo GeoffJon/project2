@@ -8,26 +8,44 @@
   <link rel="stylesheet" href="styles/styles.css">
 </head>
 <body>
+  <div class="wrapper">
 
-  <header>
-    <h1>Title TBA</h1>
-  </header>
-
-  <main>
-    <form id="form" action="">
-      <label for="searchTitle">Search by title</label>
-      <input type="text" id="searchTitle" name="searchTitle">
-
-      <button type="submit" class="submit">Find games!</button>
-    </form>
-
-    <ul class="gamesList" id="gamesList">
-      <!-- Filled in with js -->
-    </ul>
-  </main>
-  
-  <footer>Copyright &copy 2021 Juno College</footer>
-
+    <header>
+      <h1>Title TBA</h1>
+    </header>
+    
+    <main>
+      <form id="form" action="">
+        <label for="searchTitle">Search by title</label>
+        <input type="text" id="searchTitle" name="searchTitle">
+        
+        <button type="submit" class="submit">Find games!</button>
+      </form>
+      
+      <!-- <ul class="gamesList" id="gamesList"> -->
+        <!-- Filled in with js -->
+        <!-- </ul> -->
+        
+        <table>
+          <thead>
+            <tr>
+              <th colspan="5">Get wicked games here</th>
+            </tr>
+          </thead>
+          <tbody id="gamesList" class="gamesList">
+            <tr>
+              <td></td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+        
+      </main>
+      
+      
+      <footer>Copyright &copy 2021 Juno College</footer>
+    </div>
+      
   <script src="./scripts/script.js"></script>
 </body>
 </html>

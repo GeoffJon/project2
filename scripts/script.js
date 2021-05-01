@@ -38,74 +38,86 @@ app.getRandomGames = (title) => {
     .then(data => {
       const returnedList = data;
       console.log(returnedList);
-      getData(returnedList);
+      app.getData(returnedList);
     });
+}
 
-    const getData = (list) => {
-      console.log(list);
-      gamesList.innerHTML = '';
+app.getGamePrices = (array) => {
+    // Initialize current empty game object
+    let finalGames = [];
+    let currentGame = {};
+    // Bring in first game in array
+    array.forEach((game, index) => {
+      const { title, normalPrice, salePrice, savings } = game;
+      // Initialize currentGame with first object so empty object does not get pushed
+      if (!index) {
+        currentGame = { ...game }
+        console.log(currentGame);
+      } else
+        // If game title matches current game title, pull out price and set to object
+        if (currentGame.title === title) {
+          currentGame.price2 = salePrice;
+          console.log(currentGame);
+        } else
+          // If game title does not match current game title, push object to final array and reset current object
+          if (currentGame.title !== title) {
+            finalGames.push(currentGame);
+            console.log({ finalGames });
+            currentGame = { ...game };
+          }
+    });
+    // Push final currentGame object at end of loop
+    finalGames.push(currentGame);
+    console.log(finalGames);
 
-      let finalGames = [];
-      
-      const getGamePrices = (array) => {
-        // Initialize current empty game object
-        let currentGame = {};
-        // Bring in first game in array
-        array.forEach((game, index) => {
-          const { title, normalPrice, salePrice, savings } = game;
-          // Initialize currentGame with first object so empty object does not get pushed
-          if (!index) {
-            currentGame = { ...game }
-            console.log(currentGame);
-          } else
-            // If game title matches current game title, pull out price and set to object
-            if (currentGame.title === title) {
-              currentGame.price2 = salePrice;
-              console.log(currentGame);
-            } else
-              // If game title does not match current game title, push object to final array and reset current object
-              if (currentGame.title !== title) {
-                finalGames.push(currentGame);
-                console.log({ finalGames });
-                currentGame = { ...game };
-              }
-        });
-        // Push final currentGame object at end of loop
-        finalGames.push(currentGame);
-        console.log(finalGames);
-      }
-
-      getGamePrices(list);
-      
-      finalGames.forEach(deal => {
-        const listItem = document.createElement('li');
-        const {
-          title,
-          normalPrice,
-          salePrice,
-          savings,
-          price2
-        } = deal;
-        listItem.textContent = `${title} --> MSRP: $${normalPrice}, Sale: $${salePrice}, ${price2 === undefined || price2 === `` ? `` : `Sale2: $${price2}`} (-${Math.trunc(savings)}%)`;
-        gamesList.appendChild(listItem);
-      });
-      
-      
-      
-      
-    }
-  
-    // setTimeout(getData(returnedList), 2000);
+    app.updateData(finalGames);
   }
 
+app.getData = (list) => {
+  console.log(list);
+  gamesList.innerHTML = '';
+  
+  app.getGamePrices(list);
+}
+
+// Create LIST + Appends Data
+app.updateData = (gamesArray) => {
+
+    gamesArray.forEach(deal => {
+      const tableRow = document.createElement('tr');
+
+      const imgItem = document.createElement('img');
+      
+      imgItem.src = deal.thumb;
+      const {
+        title,
+        normalPrice,
+        salePrice,
+        savings,
+        price2
+      } = deal;
+
+      tableRow.innerHTML = `
+        <td><div><img src="${deal.thumb}"></div></td>
+        <td>${title}</td>
+        <td>
+        Regular Price:
+        $${normalPrice}
+        </td>
+        <td>Sale Price: $${salePrice}</td>
+        <td>$${price2}</td>
+      `
+
+      gamesList.append(tableRow);
+
+      
+      
+    });
+  }
 
 
 // Function to render results to the DOM
 
 // Helper function to convert currency
-
-
-
-
 
 app.init();
