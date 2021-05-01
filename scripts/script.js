@@ -19,6 +19,15 @@ baseURL.search = new URLSearchParams({
 // Create namespace object
 const app = {};
 
+// Save store ID values for filtering
+// app.steamID = '1';
+// app.gogID = '7';
+
+app.storeIDs = {
+  '1': 'steam',
+  '7': 'gog'
+}
+
 // Add event listeners
 app.init = () => {
   form.addEventListener('submit', (event) => {
@@ -52,18 +61,33 @@ app.getGamePrices = (array) => {
       // Initialize currentGame with first object so empty object does not get pushed
       if (!index) {
         currentGame = { ...game }
+        if (game.storeID === '1') {
+          currentGame.steamPrice = salePrice;
+        } else {
+          currentGame.gogPrice = salePrice;
+        }
         console.log(currentGame);
       } else
-        // If game title matches current game title, pull out price and set to object
-        if (currentGame.title === title) {
-          currentGame.price2 = salePrice;
+      // If game title matches current game title, pull out price and set to object
+      if (currentGame.title === title) {
+          if (game.storeID === '1') {
+            currentGame.steamPrice = salePrice;
+          } else {
+            currentGame.gogPrice = salePrice;
+          }
+          // currentGame.price2 = salePrice;
           console.log(currentGame);
         } else
           // If game title does not match current game title, push object to final array and reset current object
           if (currentGame.title !== title) {
             finalGames.push(currentGame);
-            console.log({ finalGames });
+            // console.log({ finalGames });
             currentGame = { ...game };
+            if (game.storeID === '1') {
+              currentGame.steamPrice = salePrice;
+            } else {
+              currentGame.gogPrice = salePrice;
+            }
           }
     });
     // Push final currentGame object at end of loop
@@ -94,7 +118,9 @@ app.updateData = (gamesArray) => {
         normalPrice,
         salePrice,
         savings,
-        price2
+        price2,
+        gogPrice,
+        steamPrice
       } = deal;
 
       tableRow.innerHTML = `
@@ -104,8 +130,8 @@ app.updateData = (gamesArray) => {
         Regular Price:
         $${normalPrice}
         </td>
-        <td>Sale Price: $${salePrice}</td>
-        <td>$${price2}</td>
+        <td>Sale Price: $${steamPrice || `--`}</td>
+        <td>$${gogPrice || `--`}</td>
       `
 
       gamesList.append(tableRow);
