@@ -12,7 +12,6 @@ let cadrate;
 const baseURL = new URL('https://www.cheapshark.com/api/1.0/deals');
 baseURL.search = new URLSearchParams({
     storeID: '1, 7',
-    // title: searchTitle.value, // <--- extra code can safely delete
     // onSale: '1',
     sortBy: 'Title'
 });
@@ -58,8 +57,6 @@ app.getCurrencyRates = () => {
 app.cacheCAD = (cad) => {
   return Number(cad.toFixed(2));
 } 
-// ***************************** ***********     ***********      gdfgdgd * *dg* d*d d* g*df* gd       **d jojsdfgh vs fts fstuf tik  sfdts
-
 
 // Function to fetch API using updtaed user params, and get games on Submit
 app.getRandomGames = () => {
@@ -88,6 +85,7 @@ app.getGamePrices = (array) => {
     // Initialize current empty game object
     let finalGames = [];
     let currentGame = {};
+
     // Bring in first game in array
     array.forEach((game, index) => {
       const { title, normalPrice, salePrice, savings } = game;
@@ -100,7 +98,7 @@ app.getGamePrices = (array) => {
         } else {
           currentGame.gogPrice = (salePrice * cadrate).toFixed(2);
         }
-        // console.log('INDEX:',index ,currentGame);
+
       } else
       // If game title matches current game title, pull out price and set to object
       if (currentGame.title === title) {
@@ -109,13 +107,11 @@ app.getGamePrices = (array) => {
           } else {
             currentGame.gogPrice = (salePrice * cadrate).toFixed(2);
           }
-          // currentGame.price2 = salePrice;
-          // console.log(currentGame);
+
         } else
           // If game title does not match current game title, push object to final array and reset current object
           if (currentGame.title !== title) {
             finalGames.push(currentGame);
-            // console.log({ finalGames });
             currentGame = { ...game };
             if (game.storeID === '1') {
               currentGame.steamPrice = (salePrice * cadrate).toFixed(2);
@@ -126,7 +122,6 @@ app.getGamePrices = (array) => {
     });
     // Push final currentGame object at end of loop
     finalGames.push(currentGame);
-    // console.log(finalGames);
 
     app.updateData(finalGames);
 }
@@ -136,8 +131,6 @@ app.updateData = (gamesArray) => {
     gamesArray.forEach(deal => {
       const tableRow = document.createElement('tr');
 
-      // const imgItem = document.createElement('img');
-      // imgItem.src = deal.thumb;
       const {
         title,
         normalPrice,
@@ -160,10 +153,5 @@ app.updateData = (gamesArray) => {
       gamesList.append(tableRow);
     });
   }
-
-
-// Function to render results to the DOM
-
-// Helper function to convert currency
 
 app.init();
