@@ -303,8 +303,16 @@ table tr:nth-child(even) {
 table td {
   border-bottom: 2px solid black;
   min-width: 15%;
-  width: 20%;
+  width: calc(50% / 3);
   text-align: center;
+}
+
+table td:first-of-type {
+  width: 25%;
+}
+
+table td:nth-of-type(2) {
+  width: 25%;
 }
 
 table a {
@@ -316,6 +324,12 @@ table a {
   min-width: 85px;
   padding: 10px 10px;
   text-decoration: none;
+}
+
+.logo {
+  width: 50px;
+  height: auto;
+  margin: 0 auto;
 }
 
 .invisible {
@@ -336,6 +350,12 @@ table a {
 
 .discount75 {
   background-color: green;
+}
+
+@media (max-width: 700px) {
+  table td:first-of-type() {
+    display: none;
+  }
 }
 
 .wrapper {
@@ -373,6 +393,7 @@ header {
 header h1 {
   color: #e5e5e5;
   font-size: 40px;
+  letter-spacing: 2px;
 }
 
 body {
@@ -420,7 +441,7 @@ ul {
 
 div {
   width: 100%;
-  height: 60px;
+  height: 70px;
 }
 
 img {
