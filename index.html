@@ -8,26 +8,41 @@
   <link rel="stylesheet" href="styles/styles.css">
 </head>
 <body>
+  <div class="wrapper">
 
-  <header>
-    <h1>Title TBA</h1>
-  </header>
-
-  <main>
-    <form id="form" action="">
-      <label for="searchTitle">Search by title</label>
-      <input type="text" id="searchTitle" name="searchTitle">
-
-      <button type="submit" class="submit">Find games!</button>
-    </form>
-
-    <ul class="gamesList" id="gamesList">
-      <!-- Filled in with js -->
-    </ul>
-  </main>
+    <header>
+      <h1>Title TBA</h1>
+    </header>
+    
+    <main>
+      <form id="form" action="">
+        <label for="searchTitle">Search by title</label>
+        <input type="text" id="searchTitle" name="searchTitle">
+        
+        <button type="submit" class="submit">Find games!</button>
+      </form>
+      
+      <table>
+        <thead>
+          <tr>
+            <th></th>
+            <th>Game title</th>
+            <th>MSRP</th>
+            <th>Steam</th>
+            <th>GOG</th>
+          </tr>
+        </thead>
+        <tbody id="gamesList" class="gamesList">
+          
+        </tbody>
+      </table>
+      
+    </main>
+    
+  </div> <!--wrapper-->
   
   <footer>Copyright &copy 2021 Juno College</footer>
-
+      
   <script src="./scripts/script.js"></script>
 </body>
 </html>
