@@ -39,11 +39,13 @@ table {
 		display: inline-block;
 		background-color: black;
 		border-radius: 20px;
-		color: white;
+		color: #e5e5e5;
+		text-shadow: 1px 1px black;
 		letter-spacing: 1px;
 		min-width: 85px;
 		padding: 10px 10px;
 		text-decoration: none;
+		font-weight: 700;
 	}
 }
 
@@ -58,17 +60,38 @@ table {
 }
 
 .discount0 {
-	background-color: red;
+	background-color: rgb(204, 8, 8);
+
+	&:hover,
+	&:focus,
+	&:active {
+		background-color: rgb(226, 5, 5);
+	}
 }
 
 .discount25 {
-	background-color: orange;
+	background-color: rgb(224, 183, 77);
+
+	&:hover,
+	&:focus,
+	&:active {
+		background-color: goldenrod;
+	}
 }
 
 .discount50 {
-	background-color: yellow;
+	background-color: rgb(44, 90, 44);
+
+	// &:hover,
+	// &:focus,
+	// &:active {
+	// 	// background-color: rgb(226, 5, 5);
+	// }
 }
 
 .discount75 {
-	background-color: green;
+	background-color: rgb(28, 129, 28);
+	&:hover {
+		background-color: rgb(79, 252, 27);
+	}
 }

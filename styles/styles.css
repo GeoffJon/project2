@@ -319,11 +319,13 @@ table a {
   display: inline-block;
   background-color: black;
   border-radius: 20px;
-  color: white;
+  color: #e5e5e5;
+  text-shadow: 1px 1px black;
   letter-spacing: 1px;
   min-width: 85px;
   padding: 10px 10px;
   text-decoration: none;
+  font-weight: 700;
 }
 
 .logo {
@@ -337,32 +339,77 @@ table a {
 }
 
 .discount0 {
-  background-color: red;
+  background-color: #cc0808;
+}
+
+.discount0:hover, .discount0:focus, .discount0:active {
+  background-color: #e20505;
 }
 
 .discount25 {
-  background-color: orange;
+  background-color: #e0b74d;
+}
+
+.discount25:hover, .discount25:focus, .discount25:active {
+  background-color: goldenrod;
 }
 
 .discount50 {
-  background-color: yellow;
+  background-color: #2c5a2c;
 }
 
 .discount75 {
-  background-color: green;
+  background-color: #1c811c;
+}
+
+.discount75:hover {
+  background-color: #4ffc1b;
 }
 
 @media (max-width: 700px) {
-  table td:first-of-type() {
+  .wrapper {
+    width: 100%;
+  }
+  table th:first-of-type {
     display: none;
+  }
+  table td {
+    padding: 5px;
+  }
+  table td:first-of-type {
+    display: none;
+  }
+  table td:not(:first-of-type) {
+    width: calc(100% / 4);
+  }
+}
+
+@media (min-width: 380px) and (max-width: 450px) {
+  * {
+    font-size: 14px;
+  }
+  td a {
+    padding: 5px;
+    min-width: 60px;
   }
 }
 
 .wrapper {
   width: 80%;
   max-width: 1200px;
-  margin: 0 auto;
-  padding-bottom: 50px;
+  margin: 0 auto 500px;
+  padding-bottom: 400px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
 
 * {
@@ -388,6 +435,7 @@ header {
           align-items: center;
   height: 200px;
   margin-bottom: 20px;
+  text-align: center;
 }
 
 header h1 {
@@ -415,19 +463,6 @@ body:before {
 }
 
 main {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
   padding-bottom: 100px;
 }
 
