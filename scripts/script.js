@@ -7,6 +7,7 @@
 const form = document.getElementById('form');
 const gamesList = document.getElementById('gamesList');
 const searchTitle = document.getElementById('searchTitle');
+const table = document.querySelector('table');
 let cadrate;
 
 const baseURL = new URL('https://www.cheapshark.com/api/1.0/deals');
@@ -74,9 +75,8 @@ app.getRandomGames = () => {
 
 // Updates Displayed list 
 app.getData = (list) => {
-  // console.log(list);
   gamesList.innerHTML = '';
-  
+
   app.getGamePrices(list);
 }
 
@@ -115,38 +115,8 @@ app.getGamePrices = (array) => {
         updatePrices();
       }
 
-
-
-
       // Initialize currentGame with first object so empty object does not get pushed
-      // if (!index) {
-      //   currentGame = { ...game }
-      //   if (game.storeID === '1') {
-      //     currentGame.steamPrice = (salePrice * cadrate).toFixed(2);
-      //   } else {
-      //     currentGame.gogPrice = (salePrice * cadrate).toFixed(2);
-      //   }
 
-      // } else
-      // // If game title matches current game title, pull out price and set to object
-      // if (currentGame.title === title) {
-      //     if (game.storeID === '1') {
-      //       currentGame.steamPrice = (salePrice * cadrate).toFixed(2);
-      //     } else {
-      //       currentGame.gogPrice = (salePrice * cadrate).toFixed(2);
-      //     }
-
-      //   } else
-      //     // If game title does not match current game title, push object to final array and reset current object
-      //     if (currentGame.title !== title) {
-      //       finalGames.push(currentGame);
-      //       currentGame = { ...game };
-      //       if (game.storeID === '1') {
-      //         currentGame.steamPrice = (salePrice * cadrate).toFixed(2);
-      //       } else {
-      //         currentGame.gogPrice = (salePrice * cadrate).toFixed(2);
-      //       }
-      //     }
     });
     // Push final currentGame object at end of loop
     finalGames.push(currentGame);
@@ -173,6 +143,8 @@ app.getDiscount = (savings) => {
 app.updateData = (gamesArray) => {
     gamesArray.forEach(deal => {
       const tableRow = document.createElement('tr');
+      table.classList.remove('invisible');
+      searchTitle.value = '';
 
       const {
         title,
@@ -185,7 +157,6 @@ app.updateData = (gamesArray) => {
         gogSavings,
         steamSavings
       } = deal;
-
 
       tableRow.innerHTML = `
         <td><div><img src="${deal.thumb}"></div></td>
