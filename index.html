@@ -5,6 +5,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Online Game Price Checker</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles/styles.css">
 </head>
 <body>
@@ -16,8 +18,8 @@
     
     <main>
       <form id="form" action="">
-        <label for="searchTitle">Search by title</label>
-        <input type="text" id="searchTitle" name="searchTitle">
+        <label for="searchTitle" class="sr-only">Search by title</label>
+        <input type="text" id="searchTitle" name="searchTitle" placeholder="What game are you looking for?">
         
         <button type="submit" class="submit">Find games!</button>
       </form>

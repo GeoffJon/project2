@@ -157,7 +157,7 @@ app.getGamePrices = (array) => {
 // Get game discount and change link background color
 app.getDiscount = (savings) => {
   if (!savings) {
-    return '';
+    return 'invisible';
   } else if (Number(savings) < 25) {
     return 'discount0';
   } else if (Number(savings) < 50) {
