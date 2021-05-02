@@ -86,39 +86,63 @@ app.getGamePrices = (array) => {
     let finalGames = [];
     let currentGame = {};
 
+    
     // Bring in first game in array
     array.forEach((game, index) => {
       const { title, normalPrice, salePrice, savings } = game;
       currentGame.normalPrice = (currentGame.normalPrice * cadrate).toFixed(2);
-      // Initialize currentGame with first object so empty object does not get pushed
+
+      const updatePrices = function () {
+        if (game.storeID === '1') {
+            currentGame.steamPrice = (salePrice * cadrate).toFixed(2);
+        } else {
+            currentGame.gogPrice = (salePrice * cadrate).toFixed(2);
+        }
+      };
+
       if (!index) {
         currentGame = { ...game }
-        if (game.storeID === '1') {
-          currentGame.steamPrice = (salePrice * cadrate).toFixed(2);
-        } else {
-          currentGame.gogPrice = (salePrice * cadrate).toFixed(2);
-        }
+        updatePrices();
+      } else if (currentGame.title === title) {
+        updatePrices();
+      } else if (currentGame.title !== title) {
+        finalGames.push(currentGame);
+        currentGame = { ...game };
+        updatePrices();
+      }
 
-      } else
-      // If game title matches current game title, pull out price and set to object
-      if (currentGame.title === title) {
-          if (game.storeID === '1') {
-            currentGame.steamPrice = (salePrice * cadrate).toFixed(2);
-          } else {
-            currentGame.gogPrice = (salePrice * cadrate).toFixed(2);
-          }
 
-        } else
-          // If game title does not match current game title, push object to final array and reset current object
-          if (currentGame.title !== title) {
-            finalGames.push(currentGame);
-            currentGame = { ...game };
-            if (game.storeID === '1') {
-              currentGame.steamPrice = (salePrice * cadrate).toFixed(2);
-            } else {
-              currentGame.gogPrice = (salePrice * cadrate).toFixed(2);
-            }
-          }
+
+
+      // Initialize currentGame with first object so empty object does not get pushed
+      // if (!index) {
+      //   currentGame = { ...game }
+      //   if (game.storeID === '1') {
+      //     currentGame.steamPrice = (salePrice * cadrate).toFixed(2);
+      //   } else {
+      //     currentGame.gogPrice = (salePrice * cadrate).toFixed(2);
+      //   }
+
+      // } else
+      // // If game title matches current game title, pull out price and set to object
+      // if (currentGame.title === title) {
+      //     if (game.storeID === '1') {
+      //       currentGame.steamPrice = (salePrice * cadrate).toFixed(2);
+      //     } else {
+      //       currentGame.gogPrice = (salePrice * cadrate).toFixed(2);
+      //     }
+
+      //   } else
+      //     // If game title does not match current game title, push object to final array and reset current object
+      //     if (currentGame.title !== title) {
+      //       finalGames.push(currentGame);
+      //       currentGame = { ...game };
+      //       if (game.storeID === '1') {
+      //         currentGame.steamPrice = (salePrice * cadrate).toFixed(2);
+      //       } else {
+      //         currentGame.gogPrice = (salePrice * cadrate).toFixed(2);
+      //       }
+      //     }
     });
     // Push final currentGame object at end of loop
     finalGames.push(currentGame);
