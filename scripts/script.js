@@ -95,8 +95,10 @@ app.getGamePrices = (array) => {
       const updatePrices = function () {
         if (game.storeID === '1') {
             currentGame.steamPrice = (salePrice * cadrate).toFixed(2);
-        } else {
+            currentGame.steamID = game.dealID;
+          } else {
             currentGame.gogPrice = (salePrice * cadrate).toFixed(2);
+            currentGame.gogID = game.dealID;
         }
       };
 
@@ -162,16 +164,18 @@ app.updateData = (gamesArray) => {
         savings,
         price2,
         gogPrice,
-        steamPrice
+        steamPrice,
+        gogID,
+        steamID
       } = deal;
 
 
       tableRow.innerHTML = `
         <td><div><img src="${deal.thumb}"></div></td>
         <td>${title}</td>
-        <td>Regular Price: $${normalPrice}</td>
-        <td>Sale Price: $${steamPrice  || `--`}</td>
-        <td>$${gogPrice || `--`}</td>
+        <td>$${normalPrice}</td>
+        <td><a href="https://www.cheapshark.com/redirect?dealID=${steamID}">$${steamPrice  || `--`}</a></td>
+        <td><a href="https://www.cheapshark.com/redirect?dealID=${gogID}">$${gogPrice || `--`}</a></td>
       `
 
       gamesList.append(tableRow);
