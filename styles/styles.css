@@ -353,8 +353,30 @@ table a {
 }
 
 @media (max-width: 700px) {
-  table td:first-of-type() {
+  .wrapper {
+    width: 100%;
+  }
+  table th:first-of-type {
     display: none;
+  }
+  table td {
+    padding: 5px;
+  }
+  table td:first-of-type {
+    display: none;
+  }
+  table td:not(:first-of-type) {
+    width: calc(100% / 4);
+  }
+}
+
+@media (min-width: 380px) and (max-width: 450px) {
+  * {
+    font-size: 14px;
+  }
+  td a {
+    padding: 5px;
+    min-width: 60px;
   }
 }
 
@@ -363,6 +385,17 @@ table a {
   max-width: 1200px;
   margin: 0 auto;
   padding-bottom: 50px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
 
 * {
@@ -388,6 +421,7 @@ header {
           align-items: center;
   height: 200px;
   margin-bottom: 20px;
+  text-align: center;
 }
 
 header h1 {
@@ -415,19 +449,6 @@ body:before {
 }
 
 main {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
   padding-bottom: 100px;
 }
 

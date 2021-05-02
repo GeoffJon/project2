@@ -1,9 +1,36 @@
 @media (max-width: 700px) {
+	.wrapper {
+		width: 100%;
+	}
+
 	table {
+		th:first-of-type {
+			display: none;
+		}
+
 		td {
-			&:first-of-type() {
+			padding: 5px;
+
+			&:first-of-type {
 				display: none;
 			}
+
+			&:not(:first-of-type) {
+				width: calc(100% / 4);
+			}
+		}
+	}
+}
+
+@media (min-width: 380px) and (max-width: 450px) {
+	* {
+		font-size: 14px;
+	}
+
+	td {
+		a {
+			padding: 5px;
+			min-width: 60px;
 		}
 	}
 }
