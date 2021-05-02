@@ -96,9 +96,11 @@ app.getGamePrices = (array) => {
         if (game.storeID === '1') {
             currentGame.steamPrice = (salePrice * cadrate).toFixed(2);
             currentGame.steamID = game.dealID;
+            currentGame.steamSavings = game.savings;
           } else {
             currentGame.gogPrice = (salePrice * cadrate).toFixed(2);
             currentGame.gogID = game.dealID;
+            currentGame.gogSavings = game.savings;
         }
       };
 
@@ -152,6 +154,21 @@ app.getGamePrices = (array) => {
     app.updateData(finalGames);
 }
 
+// Get game discount and change link background color
+app.getDiscount = (savings) => {
+  if (!savings) {
+    return '';
+  } else if (Number(savings) < 25) {
+    return 'discount0';
+  } else if (Number(savings) < 50) {
+    return 'discount25';
+  } else if (Number(savings) < 75) {
+    return 'discount50';
+  } else {
+    return 'discount75';
+  }
+}
+
 // Create table + Appends Data
 app.updateData = (gamesArray) => {
     gamesArray.forEach(deal => {
@@ -160,13 +177,13 @@ app.updateData = (gamesArray) => {
       const {
         title,
         normalPrice,
-        salePrice,
         savings,
-        price2,
         gogPrice,
         steamPrice,
         gogID,
-        steamID
+        steamID,
+        gogSavings,
+        steamSavings
       } = deal;
 
 
@@ -174,8 +191,8 @@ app.updateData = (gamesArray) => {
         <td><div><img src="${deal.thumb}"></div></td>
         <td>${title}</td>
         <td>$${normalPrice}</td>
-        <td><a href="https://www.cheapshark.com/redirect?dealID=${steamID}">$${steamPrice  || `--`}</a></td>
-        <td><a href="https://www.cheapshark.com/redirect?dealID=${gogID}">$${gogPrice || `--`}</a></td>
+        <td><a href="https://www.cheapshark.com/redirect?dealID=${steamID}" class="${app.getDiscount(steamSavings)}">$${steamPrice  || `--`}</a></td>
+        <td><a href="https://www.cheapshark.com/redirect?dealID=${gogID}" class="${app.getDiscount(gogSavings)}">$${gogPrice || `--`}</a></td>
       `
 
       gamesList.append(tableRow);
