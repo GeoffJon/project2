@@ -319,11 +319,13 @@ table a {
   display: inline-block;
   background-color: black;
   border-radius: 20px;
-  color: white;
+  color: #e5e5e5;
+  text-shadow: 1px 1px black;
   letter-spacing: 1px;
   min-width: 85px;
   padding: 10px 10px;
   text-decoration: none;
+  font-weight: 700;
 }
 
 .logo {
@@ -337,19 +339,31 @@ table a {
 }
 
 .discount0 {
-  background-color: red;
+  background-color: #cc0808;
+}
+
+.discount0:hover, .discount0:focus, .discount0:active {
+  background-color: #e20505;
 }
 
 .discount25 {
-  background-color: orange;
+  background-color: #e0b74d;
+}
+
+.discount25:hover, .discount25:focus, .discount25:active {
+  background-color: goldenrod;
 }
 
 .discount50 {
-  background-color: yellow;
+  background-color: #2c5a2c;
 }
 
 .discount75 {
-  background-color: green;
+  background-color: #1c811c;
+}
+
+.discount75:hover {
+  background-color: #4ffc1b;
 }
 
 @media (max-width: 700px) {
@@ -383,8 +397,8 @@ table a {
 .wrapper {
   width: 80%;
   max-width: 1200px;
-  margin: 0 auto;
-  padding-bottom: 50px;
+  margin: 0 auto 500px;
+  padding-bottom: 400px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
