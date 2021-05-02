@@ -1,9 +1,40 @@
 @import 'setup';
+@import 'form';
+@import 'tableStyles';
 
 .wrapper {
-	width: 800px;
-	max-width: 1400px;
+	width: 80%;
+	max-width: 1200px;
 	margin: 0 auto;
+  padding-bottom: 50px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: 'Roboto', sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  height: 100%;
+  background: linear-gradient(midnightblue, black);
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  // Keep footer from overlapping table
+  padding-bottom: 100px;
+}
+
+form {
+  margin-bottom: 20px;
 }
 
 ul {
@@ -23,21 +54,18 @@ img {
 	object-position: center 10%;
 }
 
-table {
-	width: 100%;
-	height: 60px;
-	margin: 0 auto;
-	border: 1px solid red;
 
-	td {
-		border: 1px solid green;
-		min-width: 15%;
-		width: 20%;
-		text-align: center;
-	}
-}
 
 footer {
+  width: 100%;
+  position: fixed;
+  bottom: 0px;
 	background-color: black;
 	color: white;
+  text-align: center;
+  p {
+    padding: 10px;
+  }
 }
+
+

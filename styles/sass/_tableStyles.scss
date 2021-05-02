@@ -1,0 +1,59 @@
+table {
+  background-color: #555;
+  color: #e5e5e5;
+	width: 100%;
+	margin: 0 auto;
+  padding-bottom: 50px;
+	// border: 1px solid red;
+  border-collapse: collapse;
+  thead {
+    background-color: #111;
+    color: #e5e5e5;
+  }
+  th {
+    padding: 10px;
+  }
+  tr {
+    border: 1px solid black;
+    &:nth-child(even) {
+      background-color: #888;
+    }
+  }
+	td {
+		border-bottom: 2px solid black;
+		min-width: 15%;
+		width: 20%;
+		text-align: center;
+	}
+
+  a {
+    display: inline-block;
+    background-color: black;
+    border-radius: 20px;
+    color: white;
+    letter-spacing: 1px;
+    min-width: 85px;
+    padding: 10px 10px;
+    text-decoration: none;
+  }
+}
+
+.invisible {
+  display: none;
+}
+
+.discount0{
+  background-color: red;
+}
+
+.discount25{
+  background-color: orange;
+}
+
+.discount50{
+  background-color: yellow;
+}
+
+.discount75{
+  background-color: green;
+}
