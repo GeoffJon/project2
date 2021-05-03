@@ -92,6 +92,7 @@ app.getGamePrices = (array) => {
       const { title, normalPrice, salePrice, savings } = game;
       currentGame.normalPrice = (currentGame.normalPrice * cadrate).toFixed(2);
 
+      // Check if game listing is from Steam or GoG, assign price, ID and savings to unique variables
       const updatePrices = function () {
         if (game.storeID === '1') {
             currentGame.steamPrice = (salePrice * cadrate).toFixed(2);
@@ -104,18 +105,20 @@ app.getGamePrices = (array) => {
         }
       };
 
+      // Initialize currentGame with first object so empty object does not get pushed
       if (!index) {
         currentGame = { ...game }
         updatePrices();
+      // If next game in array is same title, add game's price to currentGame object
       } else if (currentGame.title === title) {
         updatePrices();
+      // If next game in array is different game, push currentGame object to finalGames array 
       } else if (currentGame.title !== title) {
         finalGames.push(currentGame);
         currentGame = { ...game };
         updatePrices();
       }
 
-      // Initialize currentGame with first object so empty object does not get pushed
 
     });
     // Push final currentGame object at end of loop

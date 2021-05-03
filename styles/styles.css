@@ -276,16 +276,18 @@ form button:hover, form button:active, form button:focus {
 
 table {
   background-color: #555;
+  border-collapse: collapse;
   color: #e5e5e5;
-  width: 100%;
   margin: 0 auto;
   padding-bottom: 50px;
-  border-collapse: collapse;
+  width: 100%;
 }
 
 table thead {
   background-color: #111;
   color: #e5e5e5;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
 }
 
 table th {
@@ -293,7 +295,7 @@ table th {
 }
 
 table tr {
-  border: 1px solid black;
+  border: 1px solid #252525;
 }
 
 table tr:nth-child(even) {
@@ -301,7 +303,7 @@ table tr:nth-child(even) {
 }
 
 table td {
-  border-bottom: 2px solid black;
+  border-bottom: 2px solid #252525;
   min-width: 15%;
   width: calc(50% / 3);
   text-align: center;
@@ -317,21 +319,32 @@ table td:nth-of-type(2) {
 
 table a {
   display: inline-block;
-  background-color: black;
+  background-color: #252525;
   border-radius: 20px;
   color: #e5e5e5;
-  text-shadow: 1px 1px black;
+  font-weight: 700;
   letter-spacing: 1px;
   min-width: 85px;
   padding: 10px 10px;
   text-decoration: none;
-  font-weight: 700;
+  text-shadow: 2px 1px 1px #252525;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+table a:hover, table a:active, table a:focus {
+  letter-spacing: 2px;
 }
 
 .logo {
-  width: 50px;
   height: auto;
   margin: 0 auto;
+  width: 50px;
+}
+
+.steamLogo {
+  border: 1px solid #e5e5e5;
+  border-radius: 10px;
 }
 
 .invisible {
@@ -339,31 +352,35 @@ table a {
 }
 
 .discount0 {
-  background-color: #cc0808;
+  background-color: #ad1212;
 }
 
 .discount0:hover, .discount0:focus, .discount0:active {
-  background-color: #e20505;
+  background-color: #d62323;
 }
 
 .discount25 {
-  background-color: #e0b74d;
+  background-color: #a96723;
 }
 
 .discount25:hover, .discount25:focus, .discount25:active {
-  background-color: goldenrod;
+  background-color: #c56723;
 }
 
 .discount50 {
-  background-color: #2c5a2c;
+  background-color: #beae12;
+}
+
+.discount50:hover, .discount50:focus, .discount50:active {
+  background-color: #d1d125;
 }
 
 .discount75 {
-  background-color: #1c811c;
+  background-color: #008945;
 }
 
-.discount75:hover {
-  background-color: #4ffc1b;
+.discount75:hover, .discount75:focus, .discount75:active {
+  background-color: #00ba59;
 }
 
 @media (max-width: 700px) {
