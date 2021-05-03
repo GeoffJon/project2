@@ -4,6 +4,7 @@
 // https://api.ratesapi.io/api/latest?base=USD
 
 // Cache selectors
+const backToTop = document.getElementById('backToTop');
 const form = document.getElementById('form');
 const gamesList = document.getElementById('gamesList');
 const searchTitle = document.getElementById('searchTitle');
@@ -92,6 +93,7 @@ app.getGamePrices = (array) => {
       const { title, normalPrice, salePrice, savings } = game;
       currentGame.normalPrice = (currentGame.normalPrice * cadrate).toFixed(2);
 
+      // Check if game listing is from Steam or GoG, assign price, ID and savings to unique variables
       const updatePrices = function () {
         if (game.storeID === '1') {
             currentGame.steamPrice = (salePrice * cadrate).toFixed(2);
@@ -104,18 +106,20 @@ app.getGamePrices = (array) => {
         }
       };
 
+      // Initialize currentGame with first object so empty object does not get pushed
       if (!index) {
         currentGame = { ...game }
         updatePrices();
+      // If next game in array is same title, add game's price to currentGame object
       } else if (currentGame.title === title) {
         updatePrices();
+      // If next game in array is different game, push currentGame object to finalGames array 
       } else if (currentGame.title !== title) {
         finalGames.push(currentGame);
         currentGame = { ...game };
         updatePrices();
       }
 
-      // Initialize currentGame with first object so empty object does not get pushed
 
     });
     // Push final currentGame object at end of loop
@@ -143,13 +147,10 @@ app.getDiscount = (savings) => {
 app.updateData = (gamesArray) => {
     gamesArray.forEach(deal => {
       const tableRow = document.createElement('tr');
-      table.classList.remove('invisible');
-      searchTitle.value = '';
-
+      
       const {
         title,
         normalPrice,
-        savings,
         gogPrice,
         steamPrice,
         gogID,
@@ -157,17 +158,20 @@ app.updateData = (gamesArray) => {
         gogSavings,
         steamSavings
       } = deal;
-
+      
       tableRow.innerHTML = `
-        <td><div><img src="${deal.thumb}"></div></td>
-        <td>${title}</td>
-        <td>$${normalPrice}</td>
-        <td><a href="https://www.cheapshark.com/redirect?dealID=${steamID}" class="${app.getDiscount(steamSavings)}" target="_blank">$${steamPrice  || `--`}</a></td>
-        <td><a href="https://www.cheapshark.com/redirect?dealID=${gogID}" class="${app.getDiscount(gogSavings)}" target="_blank">$${gogPrice || `--`}</a></td>
+      <td><div class="gameCover"><img src="${deal.thumb}"></div></td>
+      <td>${title}</td>
+      <td>$${normalPrice}</td>
+      <td><a href="https://www.cheapshark.com/redirect?dealID=${steamID}" class="${app.getDiscount(steamSavings)}" target="_blank">$${steamPrice  || `--`}</a></td>
+      <td><a href="https://www.cheapshark.com/redirect?dealID=${gogID}" class="${app.getDiscount(gogSavings)}" target="_blank">$${gogPrice || `--`}</a></td>
       `
-
-      gamesList.append(tableRow);
+      
+      gamesList.appendChild(tableRow);
     });
+    table.classList.remove('invisible');
+    backToTop.classList.remove('invisible');
+    searchTitle.value = '';
   }
 
 app.init();

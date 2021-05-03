@@ -1,27 +1,28 @@
 table {
 	background-color: #555;
-	color: #e5e5e5;
-	width: 100%;
+	border-collapse: collapse;
+	color: $white;
 	margin: 0 auto;
 	padding-bottom: 50px;
-	// border: 1px solid red;
-	border-collapse: collapse;
+	width: 100%;
 	thead {
 		background-color: #111;
-		color: #e5e5e5;
+		color: $white;
+		text-transform: uppercase;
+		letter-spacing: 1.5px;
 	}
 	th {
 		padding: 10px;
 	}
 	tr {
-		border: 1px solid black;
+		border: 1px solid $black;
 
 		&:nth-child(even) {
 			background-color: #888;
 		}
 	}
 	td {
-		border-bottom: 2px solid black;
+		border-bottom: 2px solid $black;
 		min-width: 15%;
 		width: calc(50% / 3);
 		text-align: center;
@@ -31,28 +32,46 @@ table {
 		}
 
 		&:nth-of-type(2) {
+			padding-left: 10px;
 			width: 25%;
 		}
 	}
 
 	a {
 		display: inline-block;
-		background-color: black;
+		background-color: $black;
 		border-radius: 20px;
 		color: #e5e5e5;
-		text-shadow: 1px 1px black;
+		font-weight: 700;
 		letter-spacing: 1px;
 		min-width: 85px;
 		padding: 10px 10px;
 		text-decoration: none;
-		font-weight: 700;
+		text-shadow: 2px 1px 1px $black;
+		transition: all 0.3s ease;
+
+		&:hover,
+		&:active,
+		&:focus {
+			letter-spacing: 2px;
+		}
 	}
 }
 
+.gameCover {
+	width: 100%;
+	height: 70px;
+}
+
 .logo {
-	width: 50px;
 	height: auto;
 	margin: 0 auto;
+	width: 50px;
+}
+
+.steamLogo {
+	border: 1px solid $white;
+	border-radius: 10px;
 }
 
 .invisible {
@@ -60,38 +79,41 @@ table {
 }
 
 .discount0 {
-	background-color: rgb(204, 8, 8);
+	background-color: $red;
 
 	&:hover,
 	&:focus,
 	&:active {
-		background-color: rgb(226, 5, 5);
+		background-color: $red-hover;
 	}
 }
 
 .discount25 {
-	background-color: rgb(224, 183, 77);
+	background-color: $orange;
 
 	&:hover,
 	&:focus,
 	&:active {
-		background-color: goldenrod;
+		background-color: $orange-hover;
 	}
 }
 
 .discount50 {
-	background-color: rgb(44, 90, 44);
+	background-color: $yellow;
 
-	// &:hover,
-	// &:focus,
-	// &:active {
-	// 	// background-color: rgb(226, 5, 5);
-	// }
+	&:hover,
+	&:focus,
+	&:active {
+		background-color: $yellow-hover;
+	}
 }
 
 .discount75 {
-	background-color: rgb(28, 129, 28);
-	&:hover {
-		background-color: rgb(79, 252, 27);
+	background-color: $green;
+	
+	&:hover,
+	&:focus,
+	&:active {
+		background-color: $green-hover;
 	}
 }
