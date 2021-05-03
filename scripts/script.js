@@ -81,11 +81,12 @@ app.getRandomGames = () => {
       console.log(returnedList);
       app.getData(returnedList);
     });
-  // gamesList.innerHTML = '';
-  // if (!gamesList.classList.contains('invisible')) {
-  //   gamesList.classList.add('invisible');
-  // }
   app.showModal();
+
+  if (!table.classList.contains('invisible')) {
+    table.classList.add('invisible');
+    backToTop.classList.add('invisible');
+  }
 }
 
 // Updates Displayed list 
