@@ -1,10 +1,29 @@
+.modal {
+    position: fixed;
+    top: 50%;
+    margin-top: 10px;
+    opacity: 0.6;
+    width: 100%;
+    text-align: center;
+
+    p {
+        font-size: 1rem;
+        color: $white;
+        letter-spacing: 1px;
+        margin: 2rem 0;
+        text-transform: uppercase;
+    }
+}
+
+
 .disc {
   background: conic-gradient(#d6d6d6, #120825, #d6d6d6);
   border-radius: 50%;
-  height: 400px;
-  width: 400px;
+  height: 200px;
+  width: 200px;
   position: relative;
   animation: spin 2s ease-in-out infinite;
+  margin: 0 auto;
 }
 
 .disc::before,

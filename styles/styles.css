@@ -306,6 +306,7 @@ body:before {
 
 main {
   padding-bottom: 120px;
+  position: relative;
 }
 
 img {
@@ -499,14 +500,32 @@ table a:hover, table a:active, table a:focus {
   background-color: #00ba59;
 }
 
+.modal {
+  position: fixed;
+  top: 50%;
+  margin-top: 10px;
+  opacity: 0.6;
+  width: 100%;
+  text-align: center;
+}
+
+.modal p {
+  font-size: 1rem;
+  color: #e5e5e5;
+  letter-spacing: 1px;
+  margin: 2rem 0;
+  text-transform: uppercase;
+}
+
 .disc {
   background: conic-gradient(#d6d6d6, #120825, #d6d6d6);
   border-radius: 50%;
-  height: 400px;
-  width: 400px;
+  height: 200px;
+  width: 200px;
   position: relative;
   -webkit-animation: spin 2s ease-in-out infinite;
           animation: spin 2s ease-in-out infinite;
+  margin: 0 auto;
 }
 
 .disc::before,

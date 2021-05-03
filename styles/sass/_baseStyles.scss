@@ -56,6 +56,7 @@ body:before {
 main {
 	// Keep footer from overlapping table
 	padding-bottom: 120px;
+	position: relative;
 }
 
 img {
