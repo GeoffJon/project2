@@ -146,9 +146,7 @@ app.getDiscount = (savings) => {
 app.updateData = (gamesArray) => {
     gamesArray.forEach(deal => {
       const tableRow = document.createElement('tr');
-      table.classList.remove('invisible');
-      searchTitle.value = '';
-
+      
       const {
         title,
         normalPrice,
@@ -160,17 +158,19 @@ app.updateData = (gamesArray) => {
         gogSavings,
         steamSavings
       } = deal;
-
+      
       tableRow.innerHTML = `
-        <td><div><img src="${deal.thumb}"></div></td>
-        <td>${title}</td>
-        <td>$${normalPrice}</td>
-        <td><a href="https://www.cheapshark.com/redirect?dealID=${steamID}" class="${app.getDiscount(steamSavings)}" target="_blank">$${steamPrice  || `--`}</a></td>
-        <td><a href="https://www.cheapshark.com/redirect?dealID=${gogID}" class="${app.getDiscount(gogSavings)}" target="_blank">$${gogPrice || `--`}</a></td>
+      <td><div class="gameCover"><img src="${deal.thumb}"></div></td>
+      <td>${title}</td>
+      <td>$${normalPrice}</td>
+      <td><a href="https://www.cheapshark.com/redirect?dealID=${steamID}" class="${app.getDiscount(steamSavings)}" target="_blank">$${steamPrice  || `--`}</a></td>
+      <td><a href="https://www.cheapshark.com/redirect?dealID=${gogID}" class="${app.getDiscount(gogSavings)}" target="_blank">$${gogPrice || `--`}</a></td>
       `
-
-      gamesList.append(tableRow);
+      
+      gamesList.appendChild(tableRow);
     });
+    table.classList.remove('invisible');
+    searchTitle.value = '';
   }
 
 app.init();

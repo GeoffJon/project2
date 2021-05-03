@@ -60,7 +60,7 @@ body:before {
 
 main {
 	// Keep footer from overlapping table
-	min-height: calc(100vh - 220px);
+	padding-bottom: 120px;
 }
 
 form {
@@ -71,7 +71,7 @@ ul {
 	list-style: none;
 }
 
-div {
+div.gameCover {
 	width: 100%;
 	height: 70px;
 }

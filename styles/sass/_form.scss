@@ -1,12 +1,11 @@
 form {
-  // border: 1px solid yellow;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  margin: 100px 0;
   width: 50%;
   input {
-    // outline: none;   
     border: none;
     border-radius: 25px;
     width: 100%;
@@ -15,15 +14,18 @@ form {
   }
   button {
     cursor: pointer;
-    padding: 10px 20px;
+    background-color: $green;
+    color: $white;
     border-radius: 20px;
     border: none;
-    background-color: green;
+    letter-spacing: 1.5px;
+    padding: 10px 20px;
+    text-transform: uppercase;
     transition: background-color 0.3s ease;
     &:hover,
     &:active,
     &:focus {
-      background-color: chartreuse;
+      background-color: $green-hover;
     }
   }
 
