@@ -4,7 +4,7 @@
 	}
 
 	form {
-		margin: 50px 0;
+		padding: 50px 0;
 		width: 80%;
 	}
 
@@ -33,6 +33,14 @@
 	}
 
 	td {
+		&:nth-of-type(2) {
+			width: 40%;
+		}
+
+		&:nth-child(n + 2){
+			width: calc(60% / 3);
+		}
+
 		a {
 			padding: 5px;
 			min-width: 60px;

@@ -576,7 +576,7 @@ table a:hover, table a:active, table a:focus {
     width: 95%;
   }
   form {
-    margin: 50px 0;
+    padding: 50px 0;
     width: 80%;
   }
   table th:first-of-type {
@@ -596,6 +596,12 @@ table a:hover, table a:active, table a:focus {
 @media (min-width: 380px) and (max-width: 450px) {
   * {
     font-size: 0.8rem;
+  }
+  td:nth-of-type(2) {
+    width: 40%;
+  }
+  td:nth-child(n + 2) {
+    width: calc(60% / 3);
   }
   td a {
     padding: 5px;
