@@ -37,7 +37,8 @@ table {
 		}
 	}
 
-	a {
+	a,
+	.discountPercentage {
 		display: inline-block;
 		background-color: $black;
 		border-radius: 20px;
@@ -110,4 +111,22 @@ table {
 	&:active {
 		background-color: $green-hover;
 	}
+}
+
+.storeLink {
+	position: relative;
+}
+
+.discountPercentage {
+	position: absolute;
+	text-transform: uppercase;
+	background: blue;
+	width: 100%;
+	padding: 10px;
+	border-radius: 20px;
+	z-index: 10;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	pointer-events: none;
 }

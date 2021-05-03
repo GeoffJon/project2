@@ -434,7 +434,8 @@ table td:nth-of-type(2) {
   width: 25%;
 }
 
-table a {
+table a,
+table .discountPercentage {
   display: inline-block;
   background-color: #252525;
   border-radius: 20px;
@@ -499,6 +500,25 @@ table a {
 
 .discount75:hover, .discount75:focus, .discount75:active {
   background-color: #00ba59;
+}
+
+.storeLink {
+  position: relative;
+}
+
+.discountPercentage {
+  position: absolute;
+  text-transform: uppercase;
+  background: blue;
+  width: 100%;
+  padding: 10px;
+  border-radius: 20px;
+  z-index: 10;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  pointer-events: none;
 }
 
 .modal {
