@@ -150,7 +150,6 @@ app.updateData = (gamesArray) => {
       const {
         title,
         normalPrice,
-        savings,
         gogPrice,
         steamPrice,
         gogID,

@@ -260,6 +260,7 @@ html {
 
 html {
   font-family: 'Roboto', sans-serif;
+  font-size: 125%;
 }
 
 header {
@@ -281,7 +282,7 @@ header {
 
 header h1 {
   color: #e5e5e5;
-  font-size: 40px;
+  font-size: 2rem;
   letter-spacing: 2px;
 }
 
@@ -355,6 +356,7 @@ form {
 form input {
   border: none;
   border-radius: 25px;
+  max-width: 400px;
   width: 100%;
   margin-bottom: 20px;
   padding: 10px;
@@ -516,7 +518,7 @@ table a:hover, table a:active, table a:focus {
 
 @media (min-width: 380px) and (max-width: 450px) {
   * {
-    font-size: 14px;
+    font-size: 0.8rem;
   }
   td a {
     padding: 5px;
