@@ -15,7 +15,6 @@ let cadrate;
 const baseURL = new URL('https://www.cheapshark.com/api/1.0/deals');
 baseURL.search = new URLSearchParams({
   storeID: '1, 7',
-  // onSale: '1',
   sortBy: 'Title'
 });
 
@@ -36,9 +35,6 @@ app.storeIDs = {
 // Loading modal function
 app.showModal = () => {
   modal.classList.remove('invisible');
-  setTimeout(() => {
-    modal.classList.add('invisible')
-  }, 1000)
 }
 
 // Add event listeners
@@ -185,11 +181,10 @@ app.updateData = (gamesArray) => {
     gamesList.appendChild(tableRow);
   });
 
-  setTimeout(() => {
-    table.classList.remove('invisible');
-    backToTop.classList.remove('invisible');
-  }, 1000)
   searchTitle.value = '';
+  table.classList.remove('invisible');
+  backToTop.classList.remove('invisible');
+  modal.classList.add('invisible');
 }
 
 app.init();
