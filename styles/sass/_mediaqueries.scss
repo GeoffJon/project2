@@ -4,8 +4,8 @@
 	}
 
 	form {
-		margin: 50px 0;
-		width: 80%;
+		padding: 50px 0;
+		width: 85%;
 	}
 
 	table {
@@ -27,15 +27,35 @@
 	}
 }
 
-@media (min-width: 380px) and (max-width: 450px) {
+@media (min-width: 600px) {
+	a {
+		&:hover,
+		&:active,
+		&:focus {
+			letter-spacing: 2px;
+		}
+	}
+}
+		
+@media (max-width: 450px) {
 	* {
 		font-size: 0.8rem;
 	}
-
-	td {
-		a {
-			padding: 5px;
-			min-width: 60px;
+	table {
+		td {
+			&:nth-of-type(2) {
+				width: 40%;
+			}
+	
+			&:nth-child(n + 2){
+				width: calc(60% / 3);
+			}
+	
+			a {
+				padding: 5px;
+				min-width: 60px;
+			}
 		}
+
 	}
 }

@@ -56,6 +56,7 @@ body:before {
 main {
 	// Keep footer from overlapping table
 	padding-bottom: 120px;
+	position: relative;
 }
 
 img {
@@ -64,6 +65,11 @@ img {
 	height: 100%;
 	object-fit: cover;
 	object-position: center 10%;
+}
+
+i.fas {
+  font-size: 2.5rem;
+  color:rgb(16, 131, 238);
 }
 
 .backToTop {

@@ -1,35 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Online Game Price Checker</title>
+  <title> Online Game Price Checker</title>
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles/styles.css">
-</head>
-<body>
-    <header id="header">
-      <h1>Steam2GoG Compare Master</h1>
-    </header>
 
-    <main>
-      <div class="wrapper">  
+  <script src="https://kit.fontawesome.com/ed48cba7cc.js" crossorigin="anonymous"></script>
+  <link rel="icon" href="./styles/assets/gamepad-solid.svg">
+</head>
+
+<body>
+  <header id="header">
+    <h1>Steam2GoG Compare Master</h1>
+  </header>
+
+  <main>
+    <div class="wrapper">
       <form id="form" action="">
         <label for="searchTitle" class="sr-only">Search by title</label>
         <input type="text" id="searchTitle" name="searchTitle" placeholder="What game are you looking for?">
-        
+
         <button type="submit" class="submit">Find games!</button>
       </form>
-      
+
+
+
       <table class="invisible">
         <thead>
           <tr>
-            <th></th>
+            <th><i class="fas fa-gamepad"></i></th>
             <th>Game title</th>
             <th>MSRP</th>
-            <th><img class="logo steamLogo" alt="logo for the Steam store front" src="styles/assets/steamLogo.webp"></th>
+            <th><img class="logo steamLogo" alt="logo for the Steam store front" src="styles/assets/steamLogo.webp">
+            </th>
             <th><img class="logo" alt="logo for the Good Old Games store front" src="styles/assets/gogLogo.png"></th>
           </tr>
         </thead>
@@ -42,13 +50,28 @@
         <p>^</p>
         <p>Back to top</p>
       </a>
-      
-    </main>
-    
-  </div> <!--wrapper-->
-  
-  <footer><p>Copyright &copy 2021 Juno College</p></footer>
-      
+
+      <!-- modal window -->
+      <div class="invisible modal" id="modal">
+        <div class="modal-container">
+          <p>loading...</p>
+
+          <div class="disc">
+            <!-- spinning animation here -->
+          </div>
+        </div>
+      </div>
+
+  </main>
+
+  </div>
+  <!--wrapper-->
+
+  <footer>
+    <p>Copyright &copy 2021 Juno College</p>
+  </footer>
+
   <script src="./scripts/script.js"></script>
 </body>
+
 </html>

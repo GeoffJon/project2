@@ -1,0 +1,56 @@
+.modal {
+    position: fixed;
+    top: 50%;
+    margin-top: 10px;
+    opacity: 0.8;
+    width: 100%;
+    text-align: center;
+
+    p {
+        font-size: 1rem;
+        color: $white;
+        letter-spacing: 1px;
+        margin: 2rem 0;
+        text-transform: uppercase;
+    }
+}
+
+
+.disc {
+  background: conic-gradient(#d6d6d6, #120825, #d6d6d6);
+  border-radius: 50%;
+  height: 200px;
+  width: 200px;
+  position: relative;
+  animation: spin 2s ease-in-out infinite;
+  margin: 0 auto;
+}
+
+.disc::before,
+.disc::after {
+  content: '';
+  border-radius: 50%;
+  background-color: #120825;
+  height: 15%;
+  width: 15%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.disc::after {
+  border: 3px solid #120825;
+  background-color: transparent;
+  height: 30%;
+  width: 30%;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(45deg);
+  }
+  100% {
+    transform: rotate(1125deg);
+  }
+}

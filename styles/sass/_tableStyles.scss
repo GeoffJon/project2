@@ -49,12 +49,6 @@ table {
 		text-decoration: none;
 		text-shadow: 2px 1px 1px $black;
 		transition: all 0.3s ease;
-
-		&:hover,
-		&:active,
-		&:focus {
-			letter-spacing: 2px;
-		}
 	}
 }
 
