@@ -1,0 +1,37 @@
+.disc {
+  background: conic-gradient(#d6d6d6, #120825, #d6d6d6);
+  border-radius: 50%;
+  height: 400px;
+  width: 400px;
+  position: relative;
+  animation: spin 2s ease-in-out infinite;
+}
+
+.disc::before,
+.disc::after {
+  content: '';
+  border-radius: 50%;
+  background-color: #120825;
+  height: 15%;
+  width: 15%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.disc::after {
+  border: 3px solid #120825;
+  background-color: transparent;
+  height: 30%;
+  width: 30%;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(45deg);
+  }
+  100% {
+    transform: rotate(1125deg);
+  }
+}
