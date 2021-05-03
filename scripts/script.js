@@ -15,7 +15,7 @@ let cadrate;
 const baseURL = new URL('https://www.cheapshark.com/api/1.0/deals');
 baseURL.search = new URLSearchParams({
   storeID: '1, 7',
-  sortBy: 'Title'
+  sortBy: 'Title',
 });
 
 const currencyURL = new URL('https://api.ratesapi.io/api/latest');
@@ -69,7 +69,6 @@ app.cacheCAD = (cad) => {
 app.getRandomGames = () => {
   // Resets Search Params on every Submit request
   baseURL.searchParams.set('title', searchTitle.value);
-  // baseURL.searchParams.set('onSale', 1);
   fetch(baseURL)
     .then(response => response.json())
     .then(data => {
