@@ -314,6 +314,7 @@ table td:first-of-type {
 }
 
 table td:nth-of-type(2) {
+  padding-left: 10px;
   width: 25%;
 }
 
@@ -414,19 +415,19 @@ table a:hover, table a:active, table a:focus {
 .wrapper {
   width: 80%;
   max-width: 1200px;
-  margin: 0 auto 500px;
-  padding-bottom: 400px;
+  margin: 0 auto;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+  flex-wrap: wrap;
 }
 
 * {
@@ -480,7 +481,7 @@ body:before {
 }
 
 main {
-  padding-bottom: 100px;
+  min-height: calc(100vh - 220px);
 }
 
 form {

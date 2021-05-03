@@ -7,9 +7,9 @@
 .wrapper {
 	width: 80%;
 	max-width: 1200px;
-	margin: 0 auto 500px;
-	padding-bottom: 400px;
+	margin: 0 auto;
 	display: flex;
+	flex-wrap: wrap;
 	align-items: center;
 	justify-content: center;
 	flex-wrap: wrap;
@@ -60,7 +60,7 @@ body:before {
 
 main {
 	// Keep footer from overlapping table
-	padding-bottom: 100px;
+	min-height: calc(100vh - 220px);
 }
 
 form {
