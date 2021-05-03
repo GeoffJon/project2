@@ -1,97 +1,9 @@
 @import 'setup';
 @import 'variables';
+@import 'baseStyles.scss';
 @import 'form';
 @import 'tableStyles';
 @import 'mediaqueries';
 
-.wrapper {
-	width: 80%;
-	max-width: 1200px;
-	margin: 0 auto;
-	display: flex;
-	flex-wrap: wrap;
-	align-items: center;
-	justify-content: center;
-	flex-wrap: wrap;
-}
 
-* {
-	margin: 0;
-	padding: 0;
-}
 
-html {
-	font-family: 'Roboto', sans-serif;
-}
-
-header {
-	background: url(./assets/pexels-photo-1010496.jpeg) no-repeat;
-	background-size: cover;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: 200px;
-	margin-bottom: 20px;
-	text-align: center;
-
-	h1 {
-		color: #e5e5e5;
-		font-size: 40px;
-		letter-spacing: 2px;
-	}
-}
-
-body {
-	min-height: 100vh;
-	height: 100%;
-}
-
-body:before {
-	content: '';
-	position: fixed;
-	left: 0;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	z-index: -1;
-	background: #d8d8d8;
-	background: linear-gradient(black 20%, midnightblue 60%, black 100%);
-}
-
-main {
-	// Keep footer from overlapping table
-	padding-bottom: 120px;
-}
-
-form {
-	margin-bottom: 20px;
-}
-
-ul {
-	list-style: none;
-}
-
-div.gameCover {
-	width: 100%;
-	height: 70px;
-}
-
-img {
-	display: block;
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
-	object-position: center 10%;
-}
-
-footer {
-	width: 100%;
-	position: fixed;
-	bottom: 0px;
-	background-color: black;
-	color: white;
-	text-align: center;
-	p {
-		padding: 10px;
-	}
-}

@@ -235,6 +235,105 @@ html {
   overflow: hidden;
 }
 
+.wrapper {
+  width: 80%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  flex-wrap: wrap;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: 'Roboto', sans-serif;
+}
+
+header {
+  background: url(./assets/pexels-photo-1010496.jpeg) no-repeat;
+  background-size: cover;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 200px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+header h1 {
+  color: #e5e5e5;
+  font-size: 40px;
+  letter-spacing: 2px;
+}
+
+body {
+  min-height: 100vh;
+  height: 100%;
+}
+
+body:before {
+  content: '';
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  background: #d8d8d8;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(20%, black), color-stop(60%, midnightblue), to(black));
+  background: linear-gradient(black 20%, midnightblue 60%, black 100%);
+}
+
+main {
+  padding-bottom: 120px;
+}
+
+ul {
+  list-style: none;
+}
+
+img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center 10%;
+     object-position: center 10%;
+}
+
+footer {
+  width: 100%;
+  position: fixed;
+  bottom: 0px;
+  background-color: black;
+  color: white;
+  text-align: center;
+}
+
+footer p {
+  padding: 10px;
+}
+
 form {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -395,7 +494,11 @@ table a:hover, table a:active, table a:focus {
 
 @media (max-width: 700px) {
   .wrapper {
-    width: 100%;
+    width: 95%;
+  }
+  form {
+    margin: 50px 0;
+    width: 80%;
   }
   table th:first-of-type {
     display: none;
@@ -419,112 +522,4 @@ table a:hover, table a:active, table a:focus {
     padding: 5px;
     min-width: 60px;
   }
-}
-
-.wrapper {
-  width: 80%;
-  max-width: 1200px;
-  margin: 0 auto;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  flex-wrap: wrap;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-}
-
-html {
-  font-family: 'Roboto', sans-serif;
-}
-
-header {
-  background: url(./assets/pexels-photo-1010496.jpeg) no-repeat;
-  background-size: cover;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  height: 200px;
-  margin-bottom: 20px;
-  text-align: center;
-}
-
-header h1 {
-  color: #e5e5e5;
-  font-size: 40px;
-  letter-spacing: 2px;
-}
-
-body {
-  min-height: 100vh;
-  height: 100%;
-}
-
-body:before {
-  content: '';
-  position: fixed;
-  left: 0;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  z-index: -1;
-  background: #d8d8d8;
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(20%, black), color-stop(60%, midnightblue), to(black));
-  background: linear-gradient(black 20%, midnightblue 60%, black 100%);
-}
-
-main {
-  padding-bottom: 120px;
-}
-
-form {
-  margin-bottom: 20px;
-}
-
-ul {
-  list-style: none;
-}
-
-div.gameCover {
-  width: 100%;
-  height: 70px;
-}
-
-img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
-  -o-object-position: center 10%;
-     object-position: center 10%;
-}
-
-footer {
-  width: 100%;
-  position: fixed;
-  bottom: 0px;
-  background-color: black;
-  color: white;
-  text-align: center;
-}
-
-footer p {
-  padding: 10px;
 }
