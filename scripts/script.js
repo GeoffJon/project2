@@ -4,6 +4,7 @@
 // https://api.ratesapi.io/api/latest?base=USD
 
 // Cache selectors
+const backToTop = document.getElementById('backToTop');
 const form = document.getElementById('form');
 const gamesList = document.getElementById('gamesList');
 const searchTitle = document.getElementById('searchTitle');
@@ -169,6 +170,7 @@ app.updateData = (gamesArray) => {
       gamesList.appendChild(tableRow);
     });
     table.classList.remove('invisible');
+    backToTop.classList.remove('invisible');
     searchTitle.value = '';
   }
 

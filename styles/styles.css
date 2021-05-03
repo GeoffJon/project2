@@ -308,10 +308,6 @@ main {
   padding-bottom: 120px;
 }
 
-ul {
-  list-style: none;
-}
-
 img {
   display: block;
   width: 100%;
@@ -320,6 +316,15 @@ img {
      object-fit: cover;
   -o-object-position: center 10%;
      object-position: center 10%;
+}
+
+.backToTop {
+  color: #e5e5e5;
+  margin-top: 50px;
+  line-height: 0.8rem;
+  text-align: center;
+  text-decoration: none;
+  text-transform: capitalize;
 }
 
 footer {
@@ -349,7 +354,7 @@ form {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  margin: 100px 0;
+  padding: 100px 0;
   width: 50%;
 }
 
