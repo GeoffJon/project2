@@ -5,6 +5,7 @@ table {
 	margin: 0 auto;
 	padding-bottom: 50px;
 	width: 100%;
+
 	thead {
 		background-color: #111;
 		color: $white;
@@ -104,7 +105,7 @@ table {
 
 .discount75 {
 	background-color: $green;
-	
+
 	&:hover,
 	&:focus,
 	&:active {

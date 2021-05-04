@@ -319,18 +319,22 @@ img {
      object-position: center 10%;
 }
 
-i.fas {
+th i.fas {
   font-size: 2.5rem;
-  color: #1083ee;
+  color: #0099ff;
 }
 
 .backToTop {
-  color: #e5e5e5;
+  font-size: 1.5rem;
+  letter-spacing: 2px;
   margin-top: 50px;
   line-height: 0.8rem;
   text-align: center;
   text-decoration: none;
-  text-transform: capitalize;
+}
+
+.backToTop p {
+  padding: 15px 35px;
 }
 
 footer {
@@ -370,24 +374,69 @@ form input {
   max-width: 400px;
   width: 100%;
   margin-bottom: 20px;
-  padding: 10px;
+  padding: 10px 15px;
 }
 
 form button {
-  cursor: pointer;
-  background-color: #008945;
-  color: #e5e5e5;
-  border-radius: 20px;
-  border: none;
+  font-size: 1.5rem;
   letter-spacing: 1.5px;
-  padding: 10px 20px;
-  text-transform: uppercase;
-  -webkit-transition: background-color 0.3s ease;
-  transition: background-color 0.3s ease;
 }
 
-form button:hover, form button:active, form button:focus {
-  background-color: #00ba59;
+.neon {
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 10px 35px;
+  color: #0099ff;
+  background-color: transparent;
+  border: 4px solid #0099ff;
+  border-radius: 10px;
+  text-shadow: 0 0 4px #88b3d1, 0 0 4px #0099ff;
+  -webkit-box-shadow: inset 0 0 25px 0 #0099ff, 0 0 25px 0 #0099ff;
+          box-shadow: inset 0 0 25px 0 #0099ff, 0 0 25px 0 #0099ff;
+  -webkit-transition: background-color 100ms linear;
+  transition: background-color 100ms linear;
+}
+
+.neon::before {
+  content: '';
+  position: absolute;
+  top: 120%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #0099ff;
+  opacity: 0;
+  -webkit-transform: perspective(50px) rotateX(40deg) scale(1, 0.3);
+          transform: perspective(50px) rotateX(40deg) scale(1, 0.3);
+  -webkit-filter: blur(50px);
+          filter: blur(50px);
+}
+
+.neon::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  -webkit-box-shadow: 0 0 50px #0099ff;
+          box-shadow: 0 0 50px #0099ff;
+  opacity: 0;
+}
+
+.neon:hover,
+.neon:focus {
+  background: #0099ff;
+  color: #252525;
+  text-shadow: none;
+}
+
+.neon:hover::before,
+.neon:hover::after {
+  opacity: 1;
 }
 
 table {
