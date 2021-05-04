@@ -322,6 +322,7 @@ img {
 th i.fas {
   font-size: 2.5rem;
   color: #0099ff;
+  text-shadow: 0 0 7px #0099ff;
 }
 
 .backToTop {
@@ -457,6 +458,17 @@ table thead {
 
 table th {
   padding: 10px;
+  position: relative;
+}
+
+table th:nth-of-type(2)::after, table th:nth-of-type(3)::after {
+  content: '';
+  position: absolute;
+  bottom: 15%;
+  left: 10%;
+  height: 3px;
+  width: 80%;
+  background: #0099ff;
 }
 
 table tr {
