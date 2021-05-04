@@ -115,7 +115,7 @@ table {
 .storeLink {
 	position: relative;
 	overflow: hidden;
-	
+	// Element displays discount percentage of game, revealed on :hover
 	&::before {
     content: attr(savings);
     position: absolute;
@@ -134,26 +134,6 @@ table {
 		&::before {
 			transform: translateY(0);
 		}
-		.discountPercentage {
-			opacity: 1;
-			letter-spacing: 1.2px;
-			transform: translate(-50%, -50%) scale(1.1);
-		}
 	}
 }
 
-.discountPercentage {
-	background: blue;
-	border-radius: 20px;
-	font-size: 0.8rem;
-	padding: 10px;
-	pointer-events: none;
-	position: absolute;
-	left: 50%;
-	top: 50%;
-	opacity: 0;
-	text-transform: uppercase;
-	transition: all 0.3s ease;
-	transform: translate(-50%, -50%);
-	width: 80%;
-}

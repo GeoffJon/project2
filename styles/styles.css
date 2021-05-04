@@ -529,31 +529,6 @@ table a {
           transform: translateY(0);
 }
 
-.storeLink:hover .discountPercentage {
-  opacity: 1;
-  letter-spacing: 1.2px;
-  -webkit-transform: translate(-50%, -50%) scale(1.1);
-          transform: translate(-50%, -50%) scale(1.1);
-}
-
-.discountPercentage {
-  background: blue;
-  border-radius: 20px;
-  font-size: 0.8rem;
-  padding: 10px;
-  pointer-events: none;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  opacity: 0;
-  text-transform: uppercase;
-  -webkit-transition: all 0.3s ease;
-  transition: all 0.3s ease;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
-  width: 80%;
-}
-
 .modal {
   position: fixed;
   top: 50%;
