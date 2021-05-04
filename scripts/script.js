@@ -175,7 +175,7 @@ app.updateData = (gamesArray) => {
       <td>${title}</td>
       <td>$${normalPrice}</td>
       <td class="storeLink"><a href="https://www.cheapshark.com/redirect?dealID=${steamID}" class="${app.getDiscount(steamSavings)}" target="_blank">$${steamPrice || `--`}</a><span class="discountPercentage">${Number(savings).toFixed(0)}% off</span></td>
-      <td><a href="https://www.cheapshark.com/redirect?dealID=${gogID}" class="storeLink ${app.getDiscount(gogSavings)}" target="_blank">$${gogPrice || `--`}</a></td>
+      <td><a href="https://www.cheapshark.com/redirect?dealID=${gogID}" savings="${savings}% off" class="storeLink ${app.getDiscount(gogSavings)}" target="_blank">$${gogPrice || `--`}</a></td>
       `
 
     gamesList.appendChild(tableRow);
