@@ -503,6 +503,30 @@ table a {
 
 .storeLink {
   position: relative;
+  overflow: hidden;
+}
+
+.storeLink::before {
+  content: attr(savings);
+  position: absolute;
+  top: 0%;
+  left: 0px;
+  background-color: inherit;
+  padding: 10px;
+  font-size: 0.9em;
+  width: 100%;
+  height: 100%;
+  -webkit-transition: -webkit-transform 0.3s ease;
+  transition: -webkit-transform 0.3s ease;
+  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, -webkit-transform 0.3s ease;
+  -webkit-transform: translateY(100%);
+          transform: translateY(100%);
+}
+
+.storeLink:hover::before {
+  -webkit-transform: translateY(0);
+          transform: translateY(0);
 }
 
 .storeLink:hover .discountPercentage {
