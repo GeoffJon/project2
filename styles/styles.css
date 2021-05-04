@@ -429,7 +429,8 @@ form button {
 }
 
 .neon:hover,
-.neon:focus {
+.neon:focus,
+.neon:active {
   background: #0099ff;
   color: #252525;
   text-shadow: none;

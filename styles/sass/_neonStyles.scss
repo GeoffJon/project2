@@ -1,5 +1,6 @@
 // learned to implement neon styling by following youtube video by Kevin J Powell
 .neon {
+	// base neon styles
 	display: inline-block;
 	position: relative;
 	cursor: pointer;
@@ -16,6 +17,7 @@
 	transition: background-color 100ms linear;
 }
 
+// reflection below button
 .neon::before {
 	content: '';
 	position: absolute;
@@ -29,6 +31,7 @@
 	filter: blur(50px);
 }
 
+// to add a brighter glow
 .neon::after {
 	content: '';
 	position: absolute;
@@ -41,16 +44,15 @@
 }
 
 .neon:hover,
-.neon:focus {
+.neon:focus,
+.neon:active {
 	background: $neon-blue;
 	color: $black;
 	text-shadow: none;
 }
 
+// turn on before/after styles
 .neon:hover::before,
 .neon:hover::after {
 	opacity: 1;
-}
-
-.logo-neon {
 }
