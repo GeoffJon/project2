@@ -60,7 +60,6 @@
 	}
 
 	// turn on before/after styles
-	// .neon-header:hover::before,
 	&:hover::before,
 	&:hover::after {
 		opacity: 1;

@@ -1,8 +1,3 @@
-// https://www.cheapshark.com/api/1.0
-// https://www.cheapshark.com/api/1.0/deals
-// https://www.cheapshark.com/api/1.0/games
-// https://api.ratesapi.io/api/latest?base=USD
-
 // Cache selectors
 const backToTop = document.getElementById('backToTop');
 const form = document.getElementById('form');
@@ -101,7 +96,7 @@ app.getGamePrices = (array) => {
   // Bring in first game in array
   array.forEach((game, index) => {
     const { title, normalPrice, salePrice, savings } = game;
-    
+
     // Check if game listing is from Steam or GoG, assign price, ID and savings to unique variables
     const updatePrices = function () {
       if (game.storeID === '1') {
