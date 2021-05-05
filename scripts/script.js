@@ -101,8 +101,7 @@ app.getGamePrices = (array) => {
   // Bring in first game in array
   array.forEach((game, index) => {
     const { title, normalPrice, salePrice, savings } = game;
-    currentGame.normalPrice = (currentGame.normalPrice * cadrate).toFixed(2);
-
+    
     // Check if game listing is from Steam or GoG, assign price, ID and savings to unique variables
     const updatePrices = function () {
       if (game.storeID === '1') {
@@ -119,6 +118,7 @@ app.getGamePrices = (array) => {
     // Initialize currentGame with first object so empty object does not get pushed
     if (!index) {
       currentGame = { ...game }
+      currentGame.normalPrice = (currentGame.normalPrice * cadrate).toFixed(2);
       updatePrices();
       // If next game in array is same title, add game's price to currentGame object
     } else if (currentGame.title === title) {
@@ -127,6 +127,7 @@ app.getGamePrices = (array) => {
     } else if (currentGame.title !== title) {
       finalGames.push(currentGame);
       currentGame = { ...game };
+      currentGame.normalPrice = (currentGame.normalPrice * cadrate).toFixed(2);
       updatePrices();
     }
 
@@ -142,6 +143,8 @@ app.getGamePrices = (array) => {
 app.getDiscount = (savings) => {
   if (!savings) {
     return 'invisible';
+  } else if (savings === '0') {
+    return;
   } else if (Number(savings) < 25) {
     return 'discount0';
   } else if (Number(savings) < 50) {
@@ -162,6 +165,7 @@ app.updateData = (gamesArray) => {
       title,
       normalPrice,
       gogPrice,
+      savings,
       steamPrice,
       gogID,
       steamID,
@@ -173,8 +177,8 @@ app.updateData = (gamesArray) => {
       <td><div class="gameCover"><img src="${deal.thumb}"></div></td>
       <td>${title}</td>
       <td>$${normalPrice}</td>
-      <td><a href="https://www.cheapshark.com/redirect?dealID=${steamID}" class="${app.getDiscount(steamSavings)}" target="_blank">$${steamPrice || `--`}</a></td>
-      <td><a href="https://www.cheapshark.com/redirect?dealID=${gogID}" class="${app.getDiscount(gogSavings)}" target="_blank">$${gogPrice || `--`}</a></td>
+      <td><a href="https://www.cheapshark.com/redirect?dealID=${steamID}" savings="-${Number(steamSavings).toFixed(0)}%" class="storeLink ${app.getDiscount(steamSavings)}" target="_blank">$${steamPrice || `--`}</a></td>
+      <td><a href="https://www.cheapshark.com/redirect?dealID=${gogID}" savings="-${Number(gogSavings).toFixed(0)}%" class="storeLink ${app.getDiscount(gogSavings)}" target="_blank">$${gogPrice || `--`}</a></td>
       `
 
     gamesList.appendChild(tableRow);

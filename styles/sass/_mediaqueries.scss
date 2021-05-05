@@ -27,6 +27,7 @@
 	}
 }
 
+// todo Decide of letter-spacing effect can be omitted
 @media (min-width: 600px) {
 	a {
 		&:hover,
@@ -52,7 +53,7 @@
 			}
 	
 			a {
-				padding: 5px;
+				padding: 10px 5px;
 				min-width: 60px;
 			}
 		}

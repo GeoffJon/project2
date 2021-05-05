@@ -124,3 +124,29 @@ table {
 		background-color: $green-hover;
 	}
 }
+
+.storeLink {
+	position: relative;
+	overflow: hidden;
+	// Element displays discount percentage of game, revealed on :hover
+	&::before {
+    content: attr(savings);
+    position: absolute;
+    top: 0%;
+    left: 0px;
+    background-color: inherit;
+    padding: 10px;
+    font-size: 0.9em;
+    width: 100%;
+    height: 100%;
+		transition: transform 0.3s ease;
+		transform: translateY(100%);
+	}
+
+	&:hover {
+		&::before {
+			transform: translateY(0);
+		}
+	}
+}
+
