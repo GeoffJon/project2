@@ -5,6 +5,7 @@ table {
 	margin: 0 auto;
 	padding-bottom: 50px;
 	width: 100%;
+
 	thead {
 		background-color: #111;
 		color: $white;
@@ -13,6 +14,18 @@ table {
 	}
 	th {
 		padding: 10px;
+		position: relative;
+
+		&:nth-of-type(2)::after,
+		&:nth-of-type(3)::after {
+			content: '';
+			position: absolute;
+			bottom: 15%;
+			left: 10%;
+			height: 3px;
+			width: 80%;
+			background: $neon-blue;
+		}
 	}
 	tr {
 		border: 1px solid $black;
@@ -104,7 +117,7 @@ table {
 
 .discount75 {
 	background-color: $green;
-	
+
 	&:hover,
 	&:focus,
 	&:active {
