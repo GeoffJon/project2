@@ -220,6 +220,9 @@ app.updateData = (gamesArray) => {
       steamSavings
     } = deal;
 
+    console.log(steamPrice);
+    console.log((parseInt(steamPrice)).toFixed(0));
+
     tableRow.innerHTML = `
       <td><div class="gameCover"><img src="${deal.thumb}"></div></td>
       <td>${title}</td>
