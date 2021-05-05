@@ -143,6 +143,8 @@ app.getGamePrices = (array) => {
 app.getDiscount = (savings) => {
   if (!savings) {
     return 'invisible';
+  } else if (savings === '0') {
+    return;
   } else if (Number(savings) < 25) {
     return 'discount0';
   } else if (Number(savings) < 50) {
@@ -175,8 +177,8 @@ app.updateData = (gamesArray) => {
       <td><div class="gameCover"><img src="${deal.thumb}"></div></td>
       <td>${title}</td>
       <td>$${normalPrice}</td>
-      <td><a href="https://www.cheapshark.com/redirect?dealID=${steamID}" savings="-${Number(savings).toFixed(0)}%" class="storeLink ${app.getDiscount(steamSavings)}" target="_blank">$${steamPrice || `--`}</a></td>
-      <td><a href="https://www.cheapshark.com/redirect?dealID=${gogID}" savings="-${Number(savings).toFixed(0)}%" class="storeLink ${app.getDiscount(gogSavings)}" target="_blank">$${gogPrice || `--`}</a></td>
+      <td><a href="https://www.cheapshark.com/redirect?dealID=${steamID}" savings="-${Number(steamSavings).toFixed(0)}%" class="storeLink ${app.getDiscount(steamSavings)}" target="_blank">$${steamPrice || `--`}</a></td>
+      <td><a href="https://www.cheapshark.com/redirect?dealID=${gogID}" savings="-${Number(gogSavings).toFixed(0)}%" class="storeLink ${app.getDiscount(gogSavings)}" target="_blank">$${gogPrice || `--`}</a></td>
       `
 
     gamesList.appendChild(tableRow);
