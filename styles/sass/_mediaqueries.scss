@@ -26,17 +26,6 @@
 		}
 	}
 }
-
-// todo Decide of letter-spacing effect can be omitted
-@media (min-width: 600px) {
-	a {
-		&:hover,
-		&:active,
-		&:focus {
-			letter-spacing: 2px;
-		}
-	}
-}
 		
 @media (max-width: 450px) {
 	* {

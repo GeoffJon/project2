@@ -696,12 +696,6 @@ label {
   }
 }
 
-@media (min-width: 600px) {
-  a:hover, a:active, a:focus {
-    letter-spacing: 2px;
-  }
-}
-
 @media (max-width: 450px) {
   * {
     font-size: 0.8rem;

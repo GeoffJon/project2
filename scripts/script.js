@@ -7,7 +7,7 @@ const table = document.querySelector('table');
 const modal = document.getElementById('modal');
 const currencyForm = document.getElementById('currencyForm');
 const currencyInput = document.querySelectorAll('.currency');
-let cadrate;
+let exchangeRate;
 
 const baseURL = new URL('https://www.cheapshark.com/api/1.0/deals');
 baseURL.search = new URLSearchParams({
@@ -23,6 +23,10 @@ currencyURL.search = new URLSearchParams({
 
 // Create namespace object
 const app = {};
+
+app.currencies = {
+  usd: 1
+}
 
 app.storeIDs = {
   '1': 'steam',
@@ -52,21 +56,26 @@ app.init = () => {
 //       const getRatesData = jsonResponse;
 //       const canadianRate = getRatesData.rates['CAD'];
 
-//       cadrate = app.cacheCAD(canadianRate);
-//       console.log(cadrate);
+//       exchangeRate = app.cacheCAD(canadianRate);
+//       console.log(exchangeRate);
 //     })
 // }
 
 app.getCurrencyRates = (rate) => {
-  console.log(rate);
+  console.log({rate});
   fetch(currencyURL)
     .then((response) => response.json())
     .then((jsonResponse) => {
       const getRatesData = jsonResponse;
       const canadianRate = getRatesData.rates[rate];
 
-      cadrate = app.cacheCAD(canadianRate);
-      console.log(cadrate);
+      app.currencies.euro = getRatesData.rates['EUR'];
+      app.currencies.cad = getRatesData.rates['CAD'];
+
+      app.currencies.euro = app.cacheCAD(app.currencies.euro);
+      app.currencies.cad = app.cacheCAD(app.currencies.cad);
+      // exchangeRate = app.cacheCAD(canadianRate);
+      console.log(app.currencies.euro, app.currencies.cad);
     })
 }
 
@@ -76,19 +85,32 @@ app.cacheCAD = (cad) => {
 }
 
 // TEST FUNCTION
+// currencyForm.addEventListener('click', () => {
+//   currencyInput.forEach(radio => {
+//     if (radio.checked) {
+//       // app.getCurrencyRates(`${radio.id.toUpperCase()}`);
+//       console.log(radio.id.toUpperCase());
+//       // update prices in real time
+//       app.getGamePrices(app.returnedList, app.currencies[radio.id]);
+//     }
+//   })
+// });
 currencyForm.addEventListener('click', () => {
-  currencyInput.forEach(radio => {
-    if (radio.checked) {
-      app.getCurrencyRates(`${radio.id.toUpperCase()}`);
-      console.log(radio.id.toUpperCase());
-    }
-
-    // update prices in real time
-    app.getGamePrices(app.returnedList)
-
-  })
+  app.selectExchangeRate();
 })
 // TEST FUNCTION
+
+app.selectExchangeRate = () => {
+  currencyInput.forEach(radio => {
+    if (radio.checked) {
+      // app.getCurrencyRates(`${radio.id.toUpperCase()}`);
+      console.log(radio.id.toUpperCase());
+      // update prices in real time
+      app.getGamePrices(app.returnedList, app.currencies[radio.id]);
+    }
+  });
+}
+
 
 // Function to fetch API using updated user params, and get games on Submit
 app.getRandomGames = () => {
@@ -98,8 +120,9 @@ app.getRandomGames = () => {
     .then(response => response.json())
     .then(data => {
       app.returnedList = data;
+      app.selectExchangeRate();
       // console.log(returnedList);
-      app.getGamePrices(app.returnedList);
+      // app.getGamePrices(app.returnedList, app.currencies[radio.id]);
     });
   app.showModal();
 
@@ -115,7 +138,7 @@ app.getRandomGames = () => {
 // }
 
 // Builds Array of filtered Games and grabs their prices
-app.getGamePrices = (array) => {
+app.getGamePrices = (array, exchangeRate) => {
   // Initialize current empty game object
   let finalGames = [];
   let currentGame = {};
@@ -128,11 +151,11 @@ app.getGamePrices = (array) => {
     // Check if game listing is from Steam or GoG, assign price, ID and savings to unique variables
     const updatePrices = function () {
       if (game.storeID === '1') {
-        currentGame.steamPrice = (salePrice * cadrate).toFixed(2);
+        currentGame.steamPrice = (salePrice * exchangeRate).toFixed(2);
         currentGame.steamID = game.dealID;
         currentGame.steamSavings = game.savings;
       } else {
-        currentGame.gogPrice = (salePrice * cadrate).toFixed(2);
+        currentGame.gogPrice = (salePrice * exchangeRate).toFixed(2);
         currentGame.gogID = game.dealID;
         currentGame.gogSavings = game.savings;
       }
@@ -141,7 +164,7 @@ app.getGamePrices = (array) => {
     // Initialize currentGame with first object so empty object does not get pushed
     if (!index) {
       currentGame = { ...game }
-      currentGame.normalPrice = (currentGame.normalPrice * cadrate).toFixed(2);
+      currentGame.normalPrice = (currentGame.normalPrice * exchangeRate).toFixed(2);
       updatePrices();
       // If next game in array is same title, add game's price to currentGame object
     } else if (currentGame.title === title) {
@@ -150,7 +173,7 @@ app.getGamePrices = (array) => {
     } else if (currentGame.title !== title) {
       finalGames.push(currentGame);
       currentGame = { ...game };
-      currentGame.normalPrice = (currentGame.normalPrice * cadrate).toFixed(2);
+      currentGame.normalPrice = (currentGame.normalPrice * exchangeRate).toFixed(2);
       updatePrices();
     }
 
@@ -212,6 +235,9 @@ app.updateData = (gamesArray) => {
   table.classList.remove('invisible');
   backToTop.classList.remove('invisible');
   modal.classList.add('invisible');
+
+  console.log('updated data');
+
 }
 
 app.init();
