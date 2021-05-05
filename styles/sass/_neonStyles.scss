@@ -1,0 +1,58 @@
+// learned to implement neon styling by following youtube video by Kevin J Powell
+.neon {
+	// base neon styles
+	display: inline-block;
+	position: relative;
+	cursor: pointer;
+	font-weight: 700;
+	text-transform: uppercase;
+	padding: 10px 35px;
+	color: $neon-blue;
+	background-color: transparent;
+
+	border: 4px solid $neon-blue;
+	border-radius: 10px;
+	text-shadow: 0 0 4px #88b3d1, 0 0 4px $neon-blue;
+	box-shadow: inset 0 0 25px 0 $neon-blue, 0 0 25px 0 $neon-blue;
+	transition: background-color 100ms linear;
+}
+
+// reflection below button
+.neon::before {
+	content: '';
+	position: absolute;
+	top: 120%;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: $neon-blue;
+	opacity: 0;
+	transform: perspective(50px) rotateX(40deg) scale(1, 0.3);
+	filter: blur(50px);
+}
+
+// to add a brighter glow
+.neon::after {
+	content: '';
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	box-shadow: 0 0 50px $neon-blue;
+	opacity: 0;
+}
+
+.neon:hover,
+.neon:focus,
+.neon:active {
+	background: $neon-blue;
+	color: $black;
+	text-shadow: none;
+}
+
+// turn on before/after styles
+.neon:hover::before,
+.neon:hover::after {
+	opacity: 1;
+}
