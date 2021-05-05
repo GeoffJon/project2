@@ -5,6 +5,8 @@ const gamesList = document.getElementById('gamesList');
 const searchTitle = document.getElementById('searchTitle');
 const table = document.querySelector('table');
 const modal = document.getElementById('modal');
+const currencyForm = document.getElementById('currencyForm');
+const currencyInput = document.querySelectorAll('.currency');
 let cadrate;
 
 const baseURL = new URL('https://www.cheapshark.com/api/1.0/deals');
@@ -34,7 +36,7 @@ app.showModal = () => {
 
 // Add event listeners
 app.init = () => {
-  app.getCurrencyRates();
+  app.getCurrencyRates('USD');
   form.addEventListener('submit', (event) => {
     event.preventDefault();
     app.getRandomGames();
@@ -43,12 +45,25 @@ app.init = () => {
 }
 
 // Currency Converter
-app.getCurrencyRates = () => {
+// app.getCurrencyRates = () => {
+//   fetch(currencyURL)
+//     .then((response) => response.json())
+//     .then((jsonResponse) => {
+//       const getRatesData = jsonResponse;
+//       const canadianRate = getRatesData.rates['CAD'];
+
+//       cadrate = app.cacheCAD(canadianRate);
+//       console.log(cadrate);
+//     })
+// }
+
+app.getCurrencyRates = (rate) => {
+  console.log(rate);
   fetch(currencyURL)
     .then((response) => response.json())
     .then((jsonResponse) => {
       const getRatesData = jsonResponse;
-      const canadianRate = getRatesData.rates['CAD'];
+      const canadianRate = getRatesData.rates[rate];
 
       cadrate = app.cacheCAD(canadianRate);
       console.log(cadrate);
@@ -60,16 +75,31 @@ app.cacheCAD = (cad) => {
   return Number(cad.toFixed(2));
 }
 
-// Function to fetch API using updtaed user params, and get games on Submit
+// TEST FUNCTION
+currencyForm.addEventListener('click', () => {
+  currencyInput.forEach(radio => {
+    if (radio.checked) {
+      app.getCurrencyRates(`${radio.id.toUpperCase()}`);
+      console.log(radio.id.toUpperCase());
+    }
+
+    // update prices in real time
+    app.getGamePrices(app.returnedList)
+
+  })
+})
+// TEST FUNCTION
+
+// Function to fetch API using updated user params, and get games on Submit
 app.getRandomGames = () => {
   // Resets Search Params on every Submit request
   baseURL.searchParams.set('title', searchTitle.value);
   fetch(baseURL)
     .then(response => response.json())
     .then(data => {
-      const returnedList = data;
-      console.log(returnedList);
-      app.getData(returnedList);
+      app.returnedList = data;
+      // console.log(returnedList);
+      app.getGamePrices(app.returnedList);
     });
   app.showModal();
 
@@ -80,11 +110,9 @@ app.getRandomGames = () => {
 }
 
 // Updates Displayed list 
-app.getData = (list) => {
-  gamesList.innerHTML = '';
-
-  app.getGamePrices(list);
-}
+// app.getData = (list) => {
+//   app.getGamePrices(list);
+// }
 
 // Builds Array of filtered Games and grabs their prices
 app.getGamePrices = (array) => {
@@ -153,6 +181,7 @@ app.getDiscount = (savings) => {
 
 // Create table + Appends Data
 app.updateData = (gamesArray) => {
+  gamesList.replaceChildren();
   gamesArray.forEach(deal => {
     const tableRow = document.createElement('tr');
 
