@@ -45,6 +45,7 @@ fieldset {
 		margin-bottom: 10px;
 		opacity: 0;
 		align-self: flex-end;
+		cursor: pointer;
 
 		img {
 			display: block;
@@ -63,6 +64,7 @@ fieldset {
 		border: none;
 		margin-bottom: 10px;
 		background: #040002;
+		cursor: pointer;
 		
 		&:focus ~ label,
 		&:active ~ label {

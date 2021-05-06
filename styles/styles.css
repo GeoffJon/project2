@@ -414,6 +414,7 @@ fieldset label {
   opacity: 0;
   -ms-flex-item-align: end;
       align-self: flex-end;
+  cursor: pointer;
 }
 
 fieldset label img {
@@ -432,6 +433,7 @@ fieldset button {
   border: none;
   margin-bottom: 10px;
   background: #040002;
+  cursor: pointer;
 }
 
 fieldset button:focus ~ label,
