@@ -395,7 +395,6 @@ form button {
 fieldset {
   width: 90px;
   border: none;
-  z-index: 99;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -404,6 +403,7 @@ fieldset {
       -ms-flex-direction: column;
           flex-direction: column;
   justify-self: center;
+  z-index: 99;
 }
 
 fieldset label {
@@ -744,7 +744,7 @@ label {
   color: white;
 }
 
-@media (max-width: 700px) {
+@media (max-width: 750px) {
   .wrapper {
     width: 95%;
   }
@@ -764,11 +764,21 @@ label {
   table td:not(:first-of-type) {
     width: calc(100% / 4);
   }
+  .currency-form {
+    top: 20%;
+    right: 2%;
+  }
+  .currency-form button {
+    background: none;
+  }
 }
 
 @media (max-width: 450px) {
   * {
     font-size: 0.8rem;
+  }
+  form input {
+    max-width: 300px;
   }
   table td:nth-of-type(2) {
     width: 40%;
