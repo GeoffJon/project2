@@ -43,68 +43,41 @@ app.init = () => {
   app.getCurrencyRates('USD');
   form.addEventListener('submit', (event) => {
     event.preventDefault();
+  currencyForm.addEventListener('click', () => {
+    app.selectExchangeRate();
+  });
     app.getRandomGames();
   });
 
 }
 
 // Currency Converter
-// app.getCurrencyRates = () => {
-//   fetch(currencyURL)
-//     .then((response) => response.json())
-//     .then((jsonResponse) => {
-//       const getRatesData = jsonResponse;
-//       const canadianRate = getRatesData.rates['CAD'];
-
-//       exchangeRate = app.cacheCAD(canadianRate);
-//       console.log(exchangeRate);
-//     })
-// }
-
 app.getCurrencyRates = (rate) => {
   console.log({rate});
   fetch(currencyURL)
     .then((response) => response.json())
     .then((jsonResponse) => {
       const getRatesData = jsonResponse;
-      const canadianRate = getRatesData.rates[rate];
 
       app.currencies.euro = getRatesData.rates['EUR'];
       app.currencies.cad = getRatesData.rates['CAD'];
 
-      app.currencies.euro = app.cacheCAD(app.currencies.euro);
-      app.currencies.cad = app.cacheCAD(app.currencies.cad);
-      // exchangeRate = app.cacheCAD(canadianRate);
+      app.currencies.euro = app.cacheMoney(app.currencies.euro);
+      app.currencies.cad = app.cacheMoney(app.currencies.cad);
+
       console.log(app.currencies.euro, app.currencies.cad);
     })
 }
 
 // Save the fetched Canadian exchange rate
-app.cacheCAD = (cad) => {
-  return Number(cad.toFixed(2));
+app.cacheMoney = (currency) => {
+  return Number(currency.toFixed(2));
 }
 
-// TEST FUNCTION
-// currencyForm.addEventListener('click', () => {
-//   currencyInput.forEach(radio => {
-//     if (radio.checked) {
-//       // app.getCurrencyRates(`${radio.id.toUpperCase()}`);
-//       console.log(radio.id.toUpperCase());
-//       // update prices in real time
-//       app.getGamePrices(app.returnedList, app.currencies[radio.id]);
-//     }
-//   })
-// });
-currencyForm.addEventListener('click', () => {
-  app.selectExchangeRate();
-})
-// TEST FUNCTION
 
 app.selectExchangeRate = () => {
   currencyInput.forEach(radio => {
     if (radio.checked) {
-      // app.getCurrencyRates(`${radio.id.toUpperCase()}`);
-      console.log(radio.id.toUpperCase());
       // update prices in real time
       app.getGamePrices(app.returnedList, app.currencies[radio.id]);
     }
@@ -121,8 +94,6 @@ app.getRandomGames = () => {
     .then(data => {
       app.returnedList = data;
       app.selectExchangeRate();
-      // console.log(returnedList);
-      // app.getGamePrices(app.returnedList, app.currencies[radio.id]);
     });
   app.showModal();
 
@@ -131,11 +102,6 @@ app.getRandomGames = () => {
     backToTop.classList.add('invisible');
   }
 }
-
-// Updates Displayed list 
-// app.getData = (list) => {
-//   app.getGamePrices(list);
-// }
 
 // Builds Array of filtered Games and grabs their prices
 app.getGamePrices = (array, exchangeRate) => {
@@ -146,7 +112,7 @@ app.getGamePrices = (array, exchangeRate) => {
 
   // Bring in first game in array
   array.forEach((game, index) => {
-    const { title, normalPrice, salePrice, savings } = game;
+    const { title, salePrice } = game;
 
     // Check if game listing is from Steam or GoG, assign price, ID and savings to unique variables
     const updatePrices = function () {
@@ -212,16 +178,12 @@ app.updateData = (gamesArray) => {
       title,
       normalPrice,
       gogPrice,
-      savings,
       steamPrice,
       gogID,
       steamID,
       gogSavings,
       steamSavings
     } = deal;
-
-    console.log(steamPrice);
-    console.log((parseInt(steamPrice)).toFixed(0));
 
     tableRow.innerHTML = `
       <td><div class="gameCover"><img src="${deal.thumb}"></div></td>
@@ -238,9 +200,7 @@ app.updateData = (gamesArray) => {
   table.classList.remove('invisible');
   backToTop.classList.remove('invisible');
   modal.classList.add('invisible');
-
-  console.log('updated data');
-
 }
+
 
 app.init();
