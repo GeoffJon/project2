@@ -45,8 +45,12 @@ fieldset {
 		margin-bottom: 10px;
 		opacity: 0;
 		align-self: flex-end;
-		cursor: pointer;
 
+		// turns on style only when the flags are visible 
+		&:focus {
+		cursor: pointer;
+		}
+		
 		img {
 			display: block;
 			width: 100%;
@@ -55,7 +59,8 @@ fieldset {
 	}
 
 	input[type="radio"] {
-		display: none;
+		opacity: 0;
+		margin: 0;
 	}
 
 	button {
@@ -65,10 +70,10 @@ fieldset {
 		margin-bottom: 10px;
 		background: #040002;
 		cursor: pointer;
-		
-		&:focus ~ label,
-		&:active ~ label {
-			opacity: 1;
+
+		&:focus,
+		&:active {
+			border: 1px solid $neon-blue;
 		}
 
 		a {
@@ -79,5 +84,17 @@ fieldset {
 			align-items: flex-end;
 			padding: 10px;
 		}
+
+		// Reveals flags on cursor click 
+		&:focus ~ label,
+		&:active ~ label {
+		opacity: 1;
+		}
+	}
+
+	input:active + label,
+	input:focus + label {
+		border: 1px dashed $white;
+		opacity: 1;
 	}
 }

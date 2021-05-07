@@ -414,6 +414,9 @@ fieldset label {
   opacity: 0;
   -ms-flex-item-align: end;
       align-self: flex-end;
+}
+
+fieldset label:focus {
   cursor: pointer;
 }
 
@@ -424,7 +427,8 @@ fieldset label img {
 }
 
 fieldset input[type="radio"] {
-  display: none;
+  opacity: 0;
+  margin: 0;
 }
 
 fieldset button {
@@ -436,9 +440,8 @@ fieldset button {
   cursor: pointer;
 }
 
-fieldset button:focus ~ label,
-fieldset button:active ~ label {
-  opacity: 1;
+fieldset button:focus, fieldset button:active {
+  border: 1px solid #0099ff;
 }
 
 fieldset button a {
@@ -452,6 +455,17 @@ fieldset button a {
       -ms-flex-align: end;
           align-items: flex-end;
   padding: 10px;
+}
+
+fieldset button:focus ~ label,
+fieldset button:active ~ label {
+  opacity: 1;
+}
+
+fieldset input:active + label,
+fieldset input:focus + label {
+  border: 1px dashed #e5e5e5;
+  opacity: 1;
 }
 
 .neon,
