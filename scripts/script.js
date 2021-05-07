@@ -7,6 +7,7 @@ const table = document.querySelector('table');
 const modal = document.getElementById('modal');
 const currencyForm = document.getElementById('currencyForm');
 const currencyInput = document.querySelectorAll('.currency');
+const errorMessage = document.getElementById('errorMessage');
 let exchangeRate;
 
 const baseURL = new URL('https://www.cheapshark.com/api/1.0/deals');
@@ -35,7 +36,7 @@ app.storeIDs = {
 
 // Loading modal function
 app.showModal = () => {
-  modal.classList.remove('invisible');
+  modal.classList.toggle('invisible');
 }
 
 // Add event listeners
@@ -82,13 +83,19 @@ app.selectExchangeRate = () => {
 
 // Function to fetch API using updated user params, and get games on Submit
 app.getRandomGames = () => {
+  // Clear error message from window
+  errorMessage.classList.add('invisible');
   // Resets Search Params on every Submit request
   baseURL.searchParams.set('title', searchTitle.value);
   fetch(baseURL)
     .then(response => response.json())
     .then(data => {
       app.returnedList = data;
-      app.selectExchangeRate();
+      if (app.returnedList.length === 0){
+        app.displayError();
+      } else {
+        app.selectExchangeRate();
+      }
     });
   app.showModal();
 
@@ -107,7 +114,7 @@ app.getGamePrices = (array, exchangeRate) => {
 
   // Bring in first game in array
   array.forEach((game, index) => {
-    const { title, salePrice, savings } = game;
+    const { title, salePrice, } = game;
 
     // Check if game listing is from Steam or GoG, assign price, ID and savings to unique variables
     const updatePrices = function () {
@@ -173,7 +180,6 @@ app.updateData = (gamesArray) => {
       title,
       normalPrice,
       gogPrice,
-      savings,
       steamPrice,
       gogID,
       steamID,
@@ -195,7 +201,13 @@ app.updateData = (gamesArray) => {
   table.classList.remove('invisible');
   backToTop.classList.remove('invisible');
   modal.classList.add('invisible');
-
 }
+
+// If API promise is not fulfilled, remove loading modal and display error message
+app.displayError = () => {
+  app.showModal();
+  errorMessage.classList.remove('invisible');
+}
+
 
 app.init();

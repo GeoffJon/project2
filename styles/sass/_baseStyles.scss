@@ -60,6 +60,11 @@ main {
 	position: relative;
 }
 
+.errorMessage {
+	color: $white;
+	font-size: 1.5rem;
+}
+
 img {
 	display: block;
 	width: 100%;

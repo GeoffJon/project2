@@ -55,7 +55,8 @@ fieldset {
 	}
 
 	input[type="radio"] {
-		display: none;
+		visibility: visible;
+		opacity: 0;
 	}
 
 	button {

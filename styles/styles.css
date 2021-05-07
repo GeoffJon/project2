@@ -310,6 +310,11 @@ main {
   position: relative;
 }
 
+.errorMessage {
+  color: #e5e5e5;
+  font-size: 1.5rem;
+}
+
 img {
   display: block;
   width: 100%;
@@ -424,7 +429,8 @@ fieldset label img {
 }
 
 fieldset input[type="radio"] {
-  display: none;
+  visibility: visible;
+  opacity: 0;
 }
 
 fieldset button {
@@ -664,7 +670,7 @@ table a {
           transform: translateY(100%);
 }
 
-.storeLink:hover::before {
+.storeLink:hover::before, .storeLink:focus::before {
   -webkit-transform: translateY(0);
           transform: translateY(0);
 }
