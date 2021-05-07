@@ -18,7 +18,7 @@ baseURL.search = new URLSearchParams({
 
 const currencyURL = new URL('https://api.ratesapi.io/api/latest');
 currencyURL.search = new URLSearchParams({
-  base: 'USD'
+  base: 'USD',
 });
 
 
