@@ -45,14 +45,20 @@ app.showModal = () => {
 // Add event listeners
 app.init = () => {
   app.getCurrencyRates('USD');
+  
   form.addEventListener('submit', (event) => {
     event.preventDefault();
-    app.getRandomGames(searchTitle.value, 0);
+    app.lastGameSearched = searchTitle.value;
+    app.currentSearchPage = 0
+    app.getRandomGames(app.lastGameSearched, app.currentSearchPage);
   });
+  
   loadMoreButton.addEventListener('click', (event) => {
     event.preventDefault();
-    // todo New function which calls getRandomGames, passing new page data, and also updates data for next call
-  })
+   
+    app.currentSearchPage += 1;
+    app.getRandomGames(app.lastGameSearched, app.currentSearchPage);
+  });
 }
 
 app.getCurrencyRates = (rate) => {
@@ -205,15 +211,25 @@ app.updateData = (gamesArray) => {
     gamesList.appendChild(tableRow);
   });
 
-  searchTitle.value = '';
+  // searchTitle.value = '';
   table.classList.remove('invisible');
   backToTop.classList.remove('invisible');
   modal.classList.add('invisible');
+  
+  // Check if API call returned full page of data, if so make LOAD MORE RESULTS visible
+  if (app.returnedList.length === 60) {
+    loadMoreButton.classList.remove('invisible');
+    searchTitle.value = app.lastGameSearched;
+  } else {
+    loadMoreButton.classList.add('invisible');
+    searchTitle.value = '';
+  }
 }
 
 // If API promise is not fulfilled, remove loading modal and display error message
 app.displayError = () => {
   app.showModal();
+  loadMoreButton.classList.add('invisible');
   errorMessage.classList.remove('invisible');
 }
 
