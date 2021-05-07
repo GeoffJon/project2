@@ -98,6 +98,7 @@ app.selectExchangeRate = () => {
 app.getRandomGames = (titleToSearch, searchResultsPage) => {
   // Clear error message from window
   errorMessage.classList.add('invisible');
+  loadMoreButton.classList.add('invisible');
   // Resets Search Params on every Submit request
   baseURL.searchParams.set('title', titleToSearch);
   baseURL.searchParams.set('pageNumber', searchResultsPage);
@@ -237,3 +238,5 @@ app.displayError = () => {
 app.init();
 
 // todo Decide if line 203 searchTitle.value = '' needs to be moved to keep search title valid for multipage request
+
+// todo Modal might need to expand and cover other elements OR .buttonContainer should be invisible to prevent buttons appearing in strange places while games are loaded
