@@ -81,6 +81,14 @@ th {
 	}
 }
 
+.buttonContainer {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	margin-top: 40px;
+}
+
 .backToTop {
 	font-size: 1.5rem;
 	letter-spacing: 2px;
@@ -92,6 +100,10 @@ th {
 	p {
 		padding: 15px 35px;
 	}
+}
+
+.invisible {
+	display: none;
 }
 
 footer {

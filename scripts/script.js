@@ -8,6 +8,7 @@ const modal = document.getElementById('modal');
 const currencyForm = document.getElementById('currencyForm');
 const currencyInput = document.querySelectorAll('.currency');
 const errorMessage = document.getElementById('errorMessage');
+const loadMoreButton = document.getElementById('loadMore');
 let exchangeRate;
 
 const baseURL = new URL('https://www.cheapshark.com/api/1.0/deals');
@@ -34,6 +35,8 @@ app.storeIDs = {
   '7': 'gog'
 }
 
+app.currentSearchPage = 0;
+
 // Loading modal function
 app.showModal = () => {
   modal.classList.toggle('invisible');
@@ -44,8 +47,12 @@ app.init = () => {
   app.getCurrencyRates('USD');
   form.addEventListener('submit', (event) => {
     event.preventDefault();
-    app.getRandomGames();
+    app.getRandomGames(searchTitle.value, 0);
   });
+  loadMoreButton.addEventListener('click', (event) => {
+    event.preventDefault();
+    // todo New function which calls getRandomGames, passing new page data, and also updates data for next call
+  })
 }
 
 app.getCurrencyRates = (rate) => {
@@ -82,11 +89,12 @@ app.selectExchangeRate = () => {
 }
 
 // Function to fetch API using updated user params, and get games on Submit
-app.getRandomGames = () => {
+app.getRandomGames = (titleToSearch, searchResultsPage) => {
   // Clear error message from window
   errorMessage.classList.add('invisible');
   // Resets Search Params on every Submit request
-  baseURL.searchParams.set('title', searchTitle.value);
+  baseURL.searchParams.set('title', titleToSearch);
+  baseURL.searchParams.set('pageNumber', searchResultsPage);
   fetch(baseURL)
     .then(response => response.json())
     .then(data => {
@@ -211,3 +219,5 @@ app.displayError = () => {
 
 
 app.init();
+
+// todo Decide if line 203 searchTitle.value = '' needs to be moved to keep search title valid for multipage request
