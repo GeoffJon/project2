@@ -422,20 +422,31 @@ html {
 }
 
 header {
-  background: url(./assets/pexels-photo-1010496.jpeg) no-repeat;
+  background: url(./assets/headerBackground.jpeg) no-repeat;
   background-size: cover;
   height: 20vh;
   margin-bottom: 20px;
   text-align: center;
 }
 
-header h1 {
+header h1,
+header h2 {
   color: #e5e5e5;
   font-size: 2rem;
   letter-spacing: 2px;
   position: relative;
   text-align: center;
-  margin: 30px auto;
+  margin: 20px auto 0;
+}
+
+header h2 {
+  font-size: 1rem;
+  margin: 10px auto 10px;
+}
+
+header .underline {
+  border-bottom: 1px solid #e5e5e5;
+  font-style: normal;
 }
 
 body {
@@ -460,7 +471,7 @@ main {
   position: relative;
 }
 
-.errorMessage {
+.error-message {
   color: #e5e5e5;
   font-size: 1.5rem;
 }
@@ -536,9 +547,10 @@ nav {
 }
 
 nav .logo-dragon {
-  text-transform: uppercase;
-  letter-spacing: 3px;
-  font-size: 1rem;
+  color: #0099ff;
+  font-size: 3rem;
+  margin-top: 10px;
+  text-shadow: 0 0 2px #88b3d1, 0 0 2px #0099ff;
 }
 
 nav .nav-links {
@@ -560,8 +572,12 @@ nav .nav-links a {
   text-decoration: none;
   letter-spacing: 3px;
   font-weight: 700;
-  font-size: 0.7rem;
+  font-size: 1rem;
   color: #e5e5e5;
+}
+
+nav .nav-links a i {
+  margin-left: 5px;
 }
 
 nav .nav-flags {
@@ -583,8 +599,13 @@ nav .nav-flags li {
   cursor: pointer;
 }
 
+nav .nav-flags li:hover, nav .nav-flags li:focus, nav .nav-flags li:active {
+  border: 2px solid red;
+}
+
 .flags-toggle {
-  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
 }
 
 form {
@@ -798,11 +819,15 @@ table a {
 }
 
 @media (max-width: 450px) {
-  * {
-    font-size: 0.8rem;
+  nav .logo-dragon {
+    font-size: 2.2rem;
   }
   form input {
+    font-size: 0.8rem;
     max-width: 300px;
+  }
+  table td {
+    font-size: 0.8rem;
   }
   table td:nth-of-type(2) {
     width: 40%;

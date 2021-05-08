@@ -33,18 +33,21 @@
 }
 		
 @media (max-width: 450px) {
-	* {
-		font-size: 0.8rem;
+
+	nav .logo-dragon {
+		font-size: 2.2rem;
 	}
 
 	form {
 		input {
+			font-size: 0.8rem;
 			max-width: 300px;
 		}
 	}
 
 	table {
 		td {
+			font-size: 0.8rem;
 			&:nth-of-type(2) {
 				width: 40%;
 			}
