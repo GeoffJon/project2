@@ -81,10 +81,6 @@ table {
 	border-radius: 10px;
 }
 
-.invisible {
-	display: none;
-}
-
 .discount0 {
 	background-color: $red;
 
@@ -143,7 +139,8 @@ table {
 		transform: translateY(100%);
 	}
 
-	&:hover {
+	&:hover,
+	&:focus {
 		&::before {
 			transform: translateY(0);
 		}
