@@ -1,5 +1,5 @@
 table {
-	background-color: #555;
+	background-color: $dark-grey;
 	border-collapse: collapse;
 	color: $white;
 	margin: 0 auto;
@@ -12,9 +12,16 @@ table {
 		text-transform: uppercase;
 		letter-spacing: 1.5px;
 	}
+
 	th {
 		padding: 10px;
 		position: relative;
+
+		i.fas {
+			font-size: 2.5rem;
+			color: $neon-blue;
+			text-shadow: 0 0 7px $neon-blue;
+		}
 
 		&:nth-of-type(2)::after,
 		&:nth-of-type(3)::after {
@@ -31,7 +38,7 @@ table {
 		border: 1px solid $black;
 
 		&:nth-child(even) {
-			background-color: #888;
+			background-color: $light-grey;
 		}
 	}
 	td {
@@ -54,7 +61,7 @@ table {
 		display: inline-block;
 		background-color: $black;
 		border-radius: 20px;
-		color: #e5e5e5;
+		color: $white;
 		font-weight: 700;
 		letter-spacing: 1px;
 		min-width: 85px;
@@ -135,8 +142,8 @@ table {
     font-size: 0.9em;
     width: 100%;
     height: 100%;
-		transition: transform 0.3s ease;
-		transform: translateY(100%);
+	transition: transform 0.3s ease;
+	transform: translateY(100%);
 	}
 
 	&:hover,

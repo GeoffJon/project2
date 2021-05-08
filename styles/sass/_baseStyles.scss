@@ -20,22 +20,30 @@ html {
 }
 
 header {
-	background: url(./assets/pexels-photo-1010496.jpeg) no-repeat;
+	background: url(./assets/headerBackground.jpeg) no-repeat;
 	background-size: cover;
-	// display: flex;
-	// justify-content: center;
-	// align-items: center;
 	height: 20vh;
 	margin-bottom: 20px;
 	text-align: center;
 
-	h1 {
-		color: #e5e5e5;
+	h1,
+	h2 {
+		color: $white;
 		font-size: 2rem;
 		letter-spacing: 2px;
 		position: relative;
 		text-align: center;
-		margin: 30px auto;
+		margin: 20px auto 0;
+	}
+
+	h2 {
+		font-size: 1rem;
+		margin: 10px auto 10px
+	}
+
+	.underline {
+		border-bottom: 1px solid $white;
+		font-style: normal;
 	}
 }
 
@@ -52,7 +60,6 @@ body:before {
 	right: 0;
 	bottom: 0;
 	z-index: -1;
-	background: #d8d8d8;
 	background: linear-gradient(black 20%, midnightblue 60%, black 100%);
 }
 
@@ -62,7 +69,7 @@ main {
 	position: relative;
 }
 
-.errorMessage {
+.error-message {
 	color: $white;
 	font-size: 1.5rem;
 }
@@ -73,14 +80,6 @@ img {
 	height: 100%;
 	object-fit: cover;
 	object-position: center 10%;
-}
-
-th {
-	i.fas {
-		font-size: 2.5rem;
-		color: $neon-blue;
-		text-shadow: 0 0 7px $neon-blue;
-	}
 }
 
 .buttonContainer {
@@ -112,9 +111,10 @@ footer {
 	width: 100%;
 	position: fixed;
 	bottom: 0px;
-	background-color: black;
-	color: white;
+	background-color: $black;
+	color: $white;
 	text-align: center;
+
 	p {
 		padding: 10px;
 	}

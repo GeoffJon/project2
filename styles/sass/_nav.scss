@@ -1,14 +1,15 @@
 nav {
-    color: white;
+    color: $white;
     display: flex;
     justify-content: space-around;
     align-items: center;
     min-height: 8vh;
 
     .logo-dragon {
-        text-transform: uppercase;
-        letter-spacing: 3px;
-        font-size: 20px;
+        color: $neon-blue;
+        font-size: 3rem;
+        margin-top: 10px;
+        text-shadow: 0 0 2px #88b3d1, 0 0 2px $neon-blue;
     }
 
     .nav-links {
@@ -26,8 +27,11 @@ nav {
             text-decoration: none;
             letter-spacing: 3px;
             font-weight: 700;
-            font-size: 0.7rem;
+            font-size: 1rem;
             color: $white;
+            i {
+                margin-left: 5px;
+            }
         }
     }
 
@@ -38,23 +42,22 @@ nav {
         justify-content: center;
         width: 200px;
 
-
         li {
             width: 40px;
             height: 25px;
             margin: 10px;
             cursor: pointer;
-        }
-
-        img {
-            display: block;
-            width: 100%;
-            height: 100%;
+            &:hover,
+            &:focus,
+            &:active {
+                border: 2px solid red;
+            }
         }
     }
 }
-
+        
 // toggle class to reveal/hide flags
 .flags-toggle {
-    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
 }

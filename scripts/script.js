@@ -1,37 +1,41 @@
 // Cache selectors
 const backToTop = document.getElementById('backToTop');
-const form = document.getElementById('form');
-const gamesList = document.getElementById('gamesList');
-const searchTitle = document.getElementById('searchTitle');
-const table = document.querySelector('table');
-const modal = document.getElementById('modal');
 const currencyInput = document.querySelectorAll('.currency');
 const errorMessage = document.getElementById('errorMessage');
+const form = document.getElementById('form');
+const gamesList = document.getElementById('gamesList');
 const loadMoreButton = document.getElementById('loadMore');
-let exchangeRate;
+const modal = document.getElementById('modal');
 const nav = document.querySelector('.nav-links li a');
-const navFlags = document.querySelector('.nav-flags')
+const navFlags = document.querySelector('.nav-flags');
+const searchTitle = document.getElementById('searchTitle');
+const table = document.querySelector('table');
 
-
+// Base URLs
 const baseURL = new URL('https://www.cheapshark.com/api/1.0/deals');
 baseURL.search = new URLSearchParams({
   storeID: '1, 7',
   sortBy: 'Title',
 });
-
 const currencyURL = new URL('https://api.ratesapi.io/api/latest');
 currencyURL.search = new URLSearchParams({
   base: 'USD',
 });
 
-
 // Create namespace object
 const app = {};
 
+// Stores current page search of API call
+app.currentSearchPage = 0;
+// saved default variable (to aid in searches)
+app.savedCurrency = 1;
+
+// Stores the exchange rates
 app.currencies = {
   usd: 1
 }
 
+// Store IDs used for filtering
 app.storeIDs = {
   '1': 'steam',
   '7': 'gog'
@@ -43,7 +47,6 @@ app.toggleFlags = () => {
     navFlags.classList.toggle('flags-toggle');
   })
 }
-app.currentSearchPage = 0;
 
 // Loading modal function
 app.showModal = () => {
@@ -60,14 +63,13 @@ app.init = () => {
     app.currentSearchPage = 0
     app.getRandomGames(app.lastGameSearched, app.currentSearchPage);
   });
-  
+
   loadMoreButton.addEventListener('click', (event) => {
     event.preventDefault();
-   
+
     app.currentSearchPage += 1;
     app.getRandomGames(app.lastGameSearched, app.currentSearchPage);
   });
-  app.selectExchangeRate();
 }
 
 
@@ -104,7 +106,7 @@ app.getRandomGames = (titleToSearch, searchResultsPage) => {
     .then(response => response.json())
     .then(data => {
       app.returnedList = data;
-      if (app.returnedList.length === 0){
+      if (app.returnedList.length === 0) {
         app.displayError();
       } else {
         app.selectExchangeRate();
@@ -119,8 +121,6 @@ app.getRandomGames = (titleToSearch, searchResultsPage) => {
   }
 }
 
-// saved default variable (to aid in searches)
-app.savedCurrency = 1;
 app.selectExchangeRate = () => {
   // Setting default parameter for the initial game search 
   app.getGamePrices(app.returnedList, app.savedCurrency);
@@ -131,8 +131,18 @@ app.selectExchangeRate = () => {
       // update prices in real time
       app.getGamePrices(app.returnedList, app.currencies[flag.id]);
       app.savedCurrency = app.currencies[flag.id];
-
+  
       navFlags.classList.toggle('flags-toggle');
+    })
+    // Adding same function for keyboard accessibility
+    flag.addEventListener('keyup', (event) => {
+      // update prices in real time
+      if (event.keyCode === 13) {
+        app.getGamePrices(app.returnedList, app.currencies[flag.id]);
+        app.savedCurrency = app.currencies[flag.id];
+        
+        navFlags.classList.toggle('flags-toggle');
+      }
     })
   });
 }
@@ -176,9 +186,8 @@ app.getGamePrices = (array, exchangeRate) => {
       currentGame.normalPrice = (currentGame.normalPrice * exchangeRate).toFixed(2);
       updatePrices();
     }
-
-
   });
+
   // Push final currentGame object at end of loop
   finalGames.push(currentGame);
 
@@ -187,9 +196,10 @@ app.getGamePrices = (array, exchangeRate) => {
 
 // Get game discount and change link background color
 app.getDiscount = (savings) => {
+  console.log(savings);
   if (!savings) {
     return 'invisible';
-  } else if (savings === '0') {
+  } else if (savings == 0) {
     return;
   } else if (Number(savings) < 25) {
     return 'discount0';
@@ -219,21 +229,25 @@ app.updateData = (gamesArray) => {
       steamSavings
     } = deal;
 
+    // Re-format the variable to remove decimals
+    steamDiscount = Number(steamSavings).toFixed(0);
+    gogDiscount = Number(gogSavings).toFixed(0);
+
     tableRow.innerHTML = `
-      <td><div class="gameCover"><img src="${deal.thumb}"></div></td>
+      <td><div class="gameCover"><img src="${deal.thumb}" alt="Cover art for ${title}"></div></td>
       <td>${title}</td>
       <td>$${normalPrice}</td>
-      <td><a href="https://www.cheapshark.com/redirect?dealID=${steamID}" savings="-${Number(steamSavings).toFixed(0)}%" class="storeLink ${app.getDiscount(steamSavings)}" target="_blank">$${steamPrice || `--`}</a></td>
-      <td><a href="https://www.cheapshark.com/redirect?dealID=${gogID}" savings="-${Number(gogSavings).toFixed(0)}%" class="storeLink ${app.getDiscount(gogSavings)}" target="_blank">$${gogPrice || `--`}</a></td>
+      <td><a href="https://www.cheapshark.com/redirect?dealID=${steamID}" savings="-${steamDiscount}%" class="storeLink ${app.getDiscount(steamSavings)}" target="_blank">$${steamPrice}</a></td>
+      <td><a href="https://www.cheapshark.com/redirect?dealID=${gogID}" savings="-${gogDiscount}%" class="storeLink ${app.getDiscount(gogSavings)}" target="_blank">$${gogPrice}</a></td>
       `
     gamesList.appendChild(tableRow);
   });
 
-  // searchTitle.value = '';
   table.classList.remove('invisible');
   backToTop.classList.remove('invisible');
   modal.classList.add('invisible');
-  
+  // app.showModal();
+
   // Check if API call returned full page of data, if so make LOAD MORE RESULTS visible
   if (app.returnedList.length === 60) {
     loadMoreButton.classList.remove('invisible');
@@ -253,7 +267,3 @@ app.displayError = () => {
 
 
 app.init();
-
-// todo Decide if line 203 searchTitle.value = '' needs to be moved to keep search title valid for multipage request
-
-// todo Modal might need to expand and cover other elements OR .buttonContainer should be invisible to prevent buttons appearing in strange places while games are loaded
