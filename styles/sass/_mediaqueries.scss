@@ -3,6 +3,11 @@
 		width: 95%;
 	}
 
+	.nav-flags {
+        right: 1%;
+	}
+
+
 	form {
 		padding: 50px 0;
 		width: 85%;
@@ -26,14 +31,14 @@
 		}
 	}
 
-	.currency-form {
-		top: 20%;
-		right: 2%;
+	// .currency-form {
+	// 	top: 20%;
+	// 	right: 2%;
 
-		button {
-			background: none;
-		}
-	}
+	// 	button {
+	// 		background: none;
+	// 	}
+	// }
 }
 		
 @media (max-width: 450px) {

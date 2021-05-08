@@ -22,10 +22,10 @@ html {
 header {
 	background: url(./assets/pexels-photo-1010496.jpeg) no-repeat;
 	background-size: cover;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: 200px;
+	// display: flex;
+	// justify-content: center;
+	// align-items: center;
+	height: 20vh;
 	margin-bottom: 20px;
 	text-align: center;
 
@@ -34,6 +34,8 @@ header {
 		font-size: 2rem;
 		letter-spacing: 2px;
 		position: relative;
+		text-align: center;
+		margin: 30px auto;
 	}
 }
 

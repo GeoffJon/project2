@@ -266,16 +266,7 @@ html {
 header {
   background: url(./assets/pexels-photo-1010496.jpeg) no-repeat;
   background-size: cover;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  height: 200px;
+  height: 20vh;
   margin-bottom: 20px;
   text-align: center;
 }
@@ -285,6 +276,8 @@ header h1 {
   font-size: 2rem;
   letter-spacing: 2px;
   position: relative;
+  text-align: center;
+  margin: 30px auto;
 }
 
 body {
@@ -352,6 +345,77 @@ footer p {
   padding: 10px;
 }
 
+nav {
+  color: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  min-height: 8vh;
+}
+
+nav .logo-dragon {
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: 20px;
+}
+
+nav .nav-links {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 50%;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+nav .nav-links li {
+  list-style: none;
+  position: relative;
+}
+
+nav .nav-links a {
+  text-decoration: none;
+  letter-spacing: 3px;
+  font-weight: 700;
+  font-size: 0.7rem;
+  color: #e5e5e5;
+}
+
+nav .nav-flags {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: absolute;
+  right: -20px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 200px;
+}
+
+nav .nav-flags li {
+  width: 40px;
+  height: 25px;
+  margin: 10px;
+  cursor: pointer;
+}
+
+nav .nav-flags img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.flags-toggle {
+  opacity: 0;
+}
+
 form {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -383,89 +447,6 @@ form input {
 form button {
   font-size: 1.5rem;
   letter-spacing: 1.5px;
-}
-
-.currency-form {
-  position: absolute;
-  top: 50px;
-  right: 5%;
-  width: 100px;
-}
-
-fieldset {
-  width: 90px;
-  border: none;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  justify-self: center;
-  z-index: 99;
-}
-
-fieldset label {
-  display: block;
-  width: 40px;
-  height: 25px;
-  margin-bottom: 10px;
-  opacity: 0;
-  -ms-flex-item-align: end;
-      align-self: flex-end;
-}
-
-fieldset label:focus {
-  cursor: pointer;
-}
-
-fieldset label img {
-  display: block;
-  width: 100%;
-  height: 100%;
-}
-
-fieldset input[type="radio"] {
-  opacity: 0;
-  margin: 0;
-}
-
-fieldset button {
-  background: none;
-  font-size: 0.8rem;
-  border: none;
-  margin-bottom: 10px;
-  background: #040002;
-  cursor: pointer;
-}
-
-fieldset button:focus, fieldset button:active {
-  border: 1px solid #0099ff;
-}
-
-fieldset button a {
-  color: #e5e5e5;
-  text-decoration: none;
-  pointer-events: none;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: end;
-      -ms-flex-align: end;
-          align-items: flex-end;
-  padding: 10px;
-}
-
-fieldset button:focus ~ label,
-fieldset button:active ~ label {
-  opacity: 1;
-}
-
-fieldset input:active + label,
-fieldset input:focus + label {
-  border: 1px dashed #e5e5e5;
-  opacity: 1;
 }
 
 .neon,
@@ -762,6 +743,9 @@ label {
   .wrapper {
     width: 95%;
   }
+  .nav-flags {
+    right: 1%;
+  }
   form {
     padding: 50px 0;
     width: 85%;
@@ -777,13 +761,6 @@ label {
   }
   table td:not(:first-of-type) {
     width: calc(100% / 4);
-  }
-  .currency-form {
-    top: 20%;
-    right: 2%;
-  }
-  .currency-form button {
-    background: none;
   }
 }
 

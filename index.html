@@ -18,27 +18,24 @@
 
 <body>
   <header id="header">
+
+    <nav>
+      <div class="logo-dragon">
+        <span><i class="fas fa-dragon"></i></span>
+      </div>
+
+      <ul class="nav-links">
+        <li><a href="#">Change Currency</a>
+          <ul class="nav-flags flags-toggle">
+            <li class="currency" id="usd"><img src="./styles/assets/american-flag-2144392_640.png"></li>
+            <li class="currency" id="cad"><img src="./styles/assets/canada-2906822_640.png"></li>
+            <li class="currency" id="euro"><img src="./styles/assets/europe-155191_640.png"></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+
     <h1 class="neon-header">Steam2GoG Compare Master</h1>
-
-    <!-- Change Currency Form -->
-    <form id="currencyForm" class="currency-form" action="">
-      <fieldset>
-        <button type="button" tabindex="1"><a href="#" tabindex="-1">Change Currency<i
-              class="fas fa-sort-down"></i></a></button>
-
-        <input type="radio" name="currency" id="usd" class="currency" value="usd" checked />
-        <label for="usd"><img src="./styles/assets/american-flag-2144392_640.png"><span class="sr-only">American
-            Dollar</span></label>
-
-        <input type="radio" name="currency" id="cad" class="currency" value="cad" tabindex="1" />
-        <label for="cad"><img src="./styles/assets/canada-2906822_640.png"><span class="sr-only">Canadian
-            Dollar</span></label>
-
-        <input type="radio" name="currency" id="euro" class="currency" value="eur" />
-        <label for="euro"><img src="./styles/assets/europe-155191_640.png"><span class="sr-only">Euro</span></label>
-
-      </fieldset>
-    </form>
 
   </header>
 

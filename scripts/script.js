@@ -5,9 +5,11 @@ const gamesList = document.getElementById('gamesList');
 const searchTitle = document.getElementById('searchTitle');
 const table = document.querySelector('table');
 const modal = document.getElementById('modal');
-const currencyForm = document.getElementById('currencyForm');
 const currencyInput = document.querySelectorAll('.currency');
 let exchangeRate;
+const nav = document.querySelector('.nav-links li a');
+const navFlags = document.querySelector('.nav-flags')
+
 
 const baseURL = new URL('https://www.cheapshark.com/api/1.0/deals');
 baseURL.search = new URLSearchParams({
@@ -33,6 +35,13 @@ app.storeIDs = {
   '7': 'gog'
 }
 
+// Toggle Flags function
+app.toggleFlags = () => {
+  nav.addEventListener('click', () => {
+    navFlags.classList.toggle('flags-toggle');
+  })
+}
+
 // Loading modal function
 app.showModal = () => {
   modal.classList.remove('invisible');
@@ -41,12 +50,16 @@ app.showModal = () => {
 // Add event listeners
 app.init = () => {
   app.getCurrencyRates('USD');
+  app.toggleFlags();
   form.addEventListener('submit', (event) => {
     event.preventDefault();
     app.getRandomGames();
   });
+  app.selectExchangeRate();
 }
 
+
+// fetches exchange rate from the API compared against USD and stores into an object 
 app.getCurrencyRates = (rate) => {
   console.log({ rate });
   fetch(currencyURL)
@@ -61,24 +74,11 @@ app.getCurrencyRates = (rate) => {
       app.currencies.cad = app.cacheMoney(app.currencies.cad);
     })
 }
-
-// Save the fetched Canadian exchange rate
-app.cacheMoney = (cad) => {
-  return Number(cad.toFixed(2));
+// Convert the exchange rates to 2 decimal spaces
+app.cacheMoney = (rate) => {
+  return Number(rate.toFixed(2));
 }
 
-currencyForm.addEventListener('click', () => {
-  app.selectExchangeRate();
-})
-
-app.selectExchangeRate = () => {
-  currencyInput.forEach(radio => {
-    if (radio.checked) {
-      // update prices in real time
-      app.getGamePrices(app.returnedList, app.currencies[radio.id]);
-    }
-  });
-}
 
 // Function to fetch API using updated user params, and get games on Submit
 app.getRandomGames = () => {
@@ -90,12 +90,31 @@ app.getRandomGames = () => {
       app.returnedList = data;
       app.selectExchangeRate();
     });
+
   app.showModal();
 
   if (!table.classList.contains('invisible')) {
     table.classList.add('invisible');
     backToTop.classList.add('invisible');
   }
+}
+
+// saved default variable (to aid in searches)
+app.savedCurrency = 1;
+app.selectExchangeRate = () => {
+  // Setting default parameter for the initial game search 
+  app.getGamePrices(app.returnedList, app.savedCurrency);
+
+  // Event listener applied to flags. Allows for easy currency changes and saves selected currency for future search
+  currencyInput.forEach(flag => {
+    flag.addEventListener('click', () => {
+      // update prices in real time
+      app.getGamePrices(app.returnedList, app.currencies[flag.id]);
+      app.savedCurrency = app.currencies[flag.id];
+
+      navFlags.classList.toggle('flags-toggle');
+    })
+  });
 }
 
 // Builds Array of filtered Games and grabs their prices
@@ -107,7 +126,7 @@ app.getGamePrices = (array, exchangeRate) => {
 
   // Bring in first game in array
   array.forEach((game, index) => {
-    const { title, salePrice, savings } = game;
+    const { title, salePrice } = game;
 
     // Check if game listing is from Steam or GoG, assign price, ID and savings to unique variables
     const updatePrices = function () {
