@@ -47,14 +47,9 @@ nav {
             height: 25px;
             margin: 10px;
             cursor: pointer;
-            &:hover,
-            &:focus,
-            &:active {
-                border: 2px solid red;
             }
         }
     }
-}
         
 // toggle class to reveal/hide flags
 .flags-toggle {

@@ -533,6 +533,10 @@ footer p {
   padding: 10px;
 }
 
+footer a {
+  color: #0099ff;
+}
+
 nav {
   color: #e5e5e5;
   display: -webkit-box;
@@ -597,10 +601,6 @@ nav .nav-flags li {
   height: 25px;
   margin: 10px;
   cursor: pointer;
-}
-
-nav .nav-flags li:hover, nav .nav-flags li:focus, nav .nav-flags li:active {
-  border: 2px solid red;
 }
 
 .flags-toggle {

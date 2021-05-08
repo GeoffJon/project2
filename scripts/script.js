@@ -75,7 +75,6 @@ app.init = () => {
 
 // fetches exchange rate from the API compared against USD and stores into an object 
 app.getCurrencyRates = (rate) => {
-  console.log({ rate });
   fetch(currencyURL)
     .then((response) => response.json())
     .then((jsonResponse) => {
@@ -196,7 +195,6 @@ app.getGamePrices = (array, exchangeRate) => {
 
 // Get game discount and change link background color
 app.getDiscount = (savings) => {
-  console.log(savings);
   if (!savings) {
     return 'invisible';
   } else if (savings == 0) {
