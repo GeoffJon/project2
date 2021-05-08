@@ -6,6 +6,8 @@ const searchTitle = document.getElementById('searchTitle');
 const table = document.querySelector('table');
 const modal = document.getElementById('modal');
 const currencyInput = document.querySelectorAll('.currency');
+const errorMessage = document.getElementById('errorMessage');
+const loadMoreButton = document.getElementById('loadMore');
 let exchangeRate;
 const nav = document.querySelector('.nav-links li a');
 const navFlags = document.querySelector('.nav-flags')
@@ -19,7 +21,7 @@ baseURL.search = new URLSearchParams({
 
 const currencyURL = new URL('https://api.ratesapi.io/api/latest');
 currencyURL.search = new URLSearchParams({
-  base: 'USD'
+  base: 'USD',
 });
 
 
@@ -41,10 +43,11 @@ app.toggleFlags = () => {
     navFlags.classList.toggle('flags-toggle');
   })
 }
+app.currentSearchPage = 0;
 
 // Loading modal function
 app.showModal = () => {
-  modal.classList.remove('invisible');
+  modal.classList.toggle('invisible');
 }
 
 // Add event listeners
@@ -53,7 +56,16 @@ app.init = () => {
   app.toggleFlags();
   form.addEventListener('submit', (event) => {
     event.preventDefault();
-    app.getRandomGames();
+    app.lastGameSearched = searchTitle.value;
+    app.currentSearchPage = 0
+    app.getRandomGames(app.lastGameSearched, app.currentSearchPage);
+  });
+  
+  loadMoreButton.addEventListener('click', (event) => {
+    event.preventDefault();
+   
+    app.currentSearchPage += 1;
+    app.getRandomGames(app.lastGameSearched, app.currentSearchPage);
   });
   app.selectExchangeRate();
 }
@@ -81,14 +93,22 @@ app.cacheMoney = (rate) => {
 
 
 // Function to fetch API using updated user params, and get games on Submit
-app.getRandomGames = () => {
+app.getRandomGames = (titleToSearch, searchResultsPage) => {
+  // Clear error message from window
+  errorMessage.classList.add('invisible');
+  loadMoreButton.classList.add('invisible');
   // Resets Search Params on every Submit request
-  baseURL.searchParams.set('title', searchTitle.value);
+  baseURL.searchParams.set('title', titleToSearch);
+  baseURL.searchParams.set('pageNumber', searchResultsPage);
   fetch(baseURL)
     .then(response => response.json())
     .then(data => {
       app.returnedList = data;
-      app.selectExchangeRate();
+      if (app.returnedList.length === 0){
+        app.displayError();
+      } else {
+        app.selectExchangeRate();
+      }
     });
 
   app.showModal();
@@ -192,7 +212,6 @@ app.updateData = (gamesArray) => {
       title,
       normalPrice,
       gogPrice,
-      savings,
       steamPrice,
       gogID,
       steamID,
@@ -210,11 +229,31 @@ app.updateData = (gamesArray) => {
     gamesList.appendChild(tableRow);
   });
 
-  searchTitle.value = '';
+  // searchTitle.value = '';
   table.classList.remove('invisible');
   backToTop.classList.remove('invisible');
   modal.classList.add('invisible');
-
+  
+  // Check if API call returned full page of data, if so make LOAD MORE RESULTS visible
+  if (app.returnedList.length === 60) {
+    loadMoreButton.classList.remove('invisible');
+    searchTitle.value = app.lastGameSearched;
+  } else {
+    loadMoreButton.classList.add('invisible');
+    searchTitle.value = '';
+  }
 }
 
+// If API promise is not fulfilled, remove loading modal and display error message
+app.displayError = () => {
+  app.showModal();
+  loadMoreButton.classList.add('invisible');
+  errorMessage.classList.remove('invisible');
+}
+
+
 app.init();
+
+// todo Decide if line 203 searchTitle.value = '' needs to be moved to keep search title valid for multipage request
+
+// todo Modal might need to expand and cover other elements OR .buttonContainer should be invisible to prevent buttons appearing in strange places while games are loaded

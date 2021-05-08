@@ -48,6 +48,7 @@
         <button type="submit" class="submit neon">Find games!</button>
       </form>
 
+      <p id="errorMessage" class="errorMessage invisible">Sorry, something went wrong ☹️</p>
 
       <table class="invisible">
         <thead>
@@ -65,11 +66,15 @@
         </tbody>
       </table>
 
-      <!-- Back to Top modal Button -->
-      <a href="#header" id="backToTop" class="backToTop invisible">
-        <!-- <p class="neon-chevron"><i class="fas fa-chevron-up "></i></p> -->
-        <p class="neon">Back to top</p>
-      </a>
+      <div class="buttonContainer">
+        <button type="submit" id="loadMore" class="submit neon invisible">Load more results</button>
+
+        <!-- Back to Top modal Button -->
+        <a href="#header" id="backToTop" class="backToTop invisible">
+          <!-- <p class="neon-chevron"><i class="fas fa-chevron-up "></i></p> -->
+          <p class="neon">Back to top</p>
+        </a>
+      </div>
 
       <!-- modal window -->
       <div class="invisible modal" id="modal">
