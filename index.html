@@ -8,6 +8,8 @@
   <title> Online Game Price Checker</title>
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles/styles.css">
 
   <script src="https://kit.fontawesome.com/ed48cba7cc.js" crossorigin="anonymous"></script>
@@ -16,12 +18,30 @@
 
 <body>
   <header id="header">
-    <h1>Steam2GoG Compare Master</h1>
+
+    <nav>
+      <div class="logo-dragon">
+        <span><i class="fas fa-dragon"></i></span>
+      </div>
+
+      <ul class="nav-links">
+        <li><a href="#">Change Currency</a>
+          <ul class="nav-flags flags-toggle">
+            <li class="currency" id="usd"><img src="./styles/assets/american-flag-2144392_640.png"></li>
+            <li class="currency" id="cad"><img src="./styles/assets/canada-2906822_640.png"></li>
+            <li class="currency" id="euro"><img src="./styles/assets/europe-155191_640.png"></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+
+    <h1 class="neon-header">Steam2GoG Compare Master</h1>
+
   </header>
 
   <main>
     <div class="wrapper">
-      <form id="form" action="">
+      <form id="form" class="games-form" action="">
         <label for="searchTitle" class="sr-only">Search by title</label>
         <input type="text" id="searchTitle" name="searchTitle" placeholder="What game are you looking for?">
 

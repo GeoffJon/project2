@@ -1,8 +1,3 @@
-// https://www.cheapshark.com/api/1.0
-// https://www.cheapshark.com/api/1.0/deals
-// https://www.cheapshark.com/api/1.0/games
-// https://api.ratesapi.io/api/latest?base=USD
-
 // Cache selectors
 const backToTop = document.getElementById('backToTop');
 const form = document.getElementById('form');
@@ -10,7 +5,11 @@ const gamesList = document.getElementById('gamesList');
 const searchTitle = document.getElementById('searchTitle');
 const table = document.querySelector('table');
 const modal = document.getElementById('modal');
-let cadrate;
+const currencyInput = document.querySelectorAll('.currency');
+let exchangeRate;
+const nav = document.querySelector('.nav-links li a');
+const navFlags = document.querySelector('.nav-flags')
+
 
 const baseURL = new URL('https://www.cheapshark.com/api/1.0/deals');
 baseURL.search = new URLSearchParams({
@@ -27,9 +26,20 @@ currencyURL.search = new URLSearchParams({
 // Create namespace object
 const app = {};
 
+app.currencies = {
+  usd: 1
+}
+
 app.storeIDs = {
   '1': 'steam',
   '7': 'gog'
+}
+
+// Toggle Flags function
+app.toggleFlags = () => {
+  nav.addEventListener('click', () => {
+    navFlags.classList.toggle('flags-toggle');
+  })
 }
 
 // Loading modal function
@@ -39,43 +49,48 @@ app.showModal = () => {
 
 // Add event listeners
 app.init = () => {
-  app.getCurrencyRates();
+  app.getCurrencyRates('USD');
+  app.toggleFlags();
   form.addEventListener('submit', (event) => {
     event.preventDefault();
     app.getRandomGames();
   });
-
+  app.selectExchangeRate();
 }
 
-// Currency Converter
-app.getCurrencyRates = () => {
+
+// fetches exchange rate from the API compared against USD and stores into an object 
+app.getCurrencyRates = (rate) => {
+  console.log({ rate });
   fetch(currencyURL)
     .then((response) => response.json())
     .then((jsonResponse) => {
       const getRatesData = jsonResponse;
-      const canadianRate = getRatesData.rates['CAD'];
 
-      cadrate = app.cacheCAD(canadianRate);
-      console.log(cadrate);
+      app.currencies.euro = getRatesData.rates['EUR'];
+      app.currencies.cad = getRatesData.rates['CAD'];
+
+      app.currencies.euro = app.cacheMoney(app.currencies.euro);
+      app.currencies.cad = app.cacheMoney(app.currencies.cad);
     })
 }
-
-// Save the fetched Canadian exchange rate
-app.cacheCAD = (cad) => {
-  return Number(cad.toFixed(2));
+// Convert the exchange rates to 2 decimal spaces
+app.cacheMoney = (rate) => {
+  return Number(rate.toFixed(2));
 }
 
-// Function to fetch API using updtaed user params, and get games on Submit
+
+// Function to fetch API using updated user params, and get games on Submit
 app.getRandomGames = () => {
   // Resets Search Params on every Submit request
   baseURL.searchParams.set('title', searchTitle.value);
   fetch(baseURL)
     .then(response => response.json())
     .then(data => {
-      const returnedList = data;
-      console.log(returnedList);
-      app.getData(returnedList);
+      app.returnedList = data;
+      app.selectExchangeRate();
     });
+
   app.showModal();
 
   if (!table.classList.contains('invisible')) {
@@ -84,15 +99,26 @@ app.getRandomGames = () => {
   }
 }
 
-// Updates Displayed list 
-app.getData = (list) => {
-  gamesList.innerHTML = '';
+// saved default variable (to aid in searches)
+app.savedCurrency = 1;
+app.selectExchangeRate = () => {
+  // Setting default parameter for the initial game search 
+  app.getGamePrices(app.returnedList, app.savedCurrency);
 
-  app.getGamePrices(list);
+  // Event listener applied to flags. Allows for easy currency changes and saves selected currency for future search
+  currencyInput.forEach(flag => {
+    flag.addEventListener('click', () => {
+      // update prices in real time
+      app.getGamePrices(app.returnedList, app.currencies[flag.id]);
+      app.savedCurrency = app.currencies[flag.id];
+
+      navFlags.classList.toggle('flags-toggle');
+    })
+  });
 }
 
 // Builds Array of filtered Games and grabs their prices
-app.getGamePrices = (array) => {
+app.getGamePrices = (array, exchangeRate) => {
   // Initialize current empty game object
   let finalGames = [];
   let currentGame = {};
@@ -100,16 +126,16 @@ app.getGamePrices = (array) => {
 
   // Bring in first game in array
   array.forEach((game, index) => {
-    const { title, normalPrice, salePrice, savings } = game;
-    
+    const { title, salePrice } = game;
+
     // Check if game listing is from Steam or GoG, assign price, ID and savings to unique variables
     const updatePrices = function () {
       if (game.storeID === '1') {
-        currentGame.steamPrice = (salePrice * cadrate).toFixed(2);
+        currentGame.steamPrice = (salePrice * exchangeRate).toFixed(2);
         currentGame.steamID = game.dealID;
         currentGame.steamSavings = game.savings;
       } else {
-        currentGame.gogPrice = (salePrice * cadrate).toFixed(2);
+        currentGame.gogPrice = (salePrice * exchangeRate).toFixed(2);
         currentGame.gogID = game.dealID;
         currentGame.gogSavings = game.savings;
       }
@@ -118,7 +144,7 @@ app.getGamePrices = (array) => {
     // Initialize currentGame with first object so empty object does not get pushed
     if (!index) {
       currentGame = { ...game }
-      currentGame.normalPrice = (currentGame.normalPrice * cadrate).toFixed(2);
+      currentGame.normalPrice = (currentGame.normalPrice * exchangeRate).toFixed(2);
       updatePrices();
       // If next game in array is same title, add game's price to currentGame object
     } else if (currentGame.title === title) {
@@ -127,7 +153,7 @@ app.getGamePrices = (array) => {
     } else if (currentGame.title !== title) {
       finalGames.push(currentGame);
       currentGame = { ...game };
-      currentGame.normalPrice = (currentGame.normalPrice * cadrate).toFixed(2);
+      currentGame.normalPrice = (currentGame.normalPrice * exchangeRate).toFixed(2);
       updatePrices();
     }
 
@@ -158,6 +184,7 @@ app.getDiscount = (savings) => {
 
 // Create table + Appends Data
 app.updateData = (gamesArray) => {
+  gamesList.replaceChildren();
   gamesArray.forEach(deal => {
     const tableRow = document.createElement('tr');
 
@@ -180,7 +207,6 @@ app.updateData = (gamesArray) => {
       <td><a href="https://www.cheapshark.com/redirect?dealID=${steamID}" savings="-${Number(steamSavings).toFixed(0)}%" class="storeLink ${app.getDiscount(steamSavings)}" target="_blank">$${steamPrice || `--`}</a></td>
       <td><a href="https://www.cheapshark.com/redirect?dealID=${gogID}" savings="-${Number(gogSavings).toFixed(0)}%" class="storeLink ${app.getDiscount(gogSavings)}" target="_blank">$${gogPrice || `--`}</a></td>
       `
-
     gamesList.appendChild(tableRow);
   });
 
@@ -188,6 +214,7 @@ app.updateData = (gamesArray) => {
   table.classList.remove('invisible');
   backToTop.classList.remove('invisible');
   modal.classList.add('invisible');
+
 }
 
 app.init();

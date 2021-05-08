@@ -1,7 +1,12 @@
-@media (max-width: 700px) {
+@media (max-width: 750px) {
 	.wrapper {
 		width: 95%;
 	}
+
+	.nav-flags {
+        right: 1%;
+	}
+
 
 	form {
 		padding: 50px 0;
@@ -25,23 +30,28 @@
 			}
 		}
 	}
-}
 
-// todo Decide of letter-spacing effect can be omitted
-@media (min-width: 600px) {
-	a {
-		&:hover,
-		&:active,
-		&:focus {
-			letter-spacing: 2px;
-		}
-	}
+	// .currency-form {
+	// 	top: 20%;
+	// 	right: 2%;
+
+	// 	button {
+	// 		background: none;
+	// 	}
+	// }
 }
 		
 @media (max-width: 450px) {
 	* {
 		font-size: 0.8rem;
 	}
+
+	form {
+		input {
+			max-width: 300px;
+		}
+	}
+
 	table {
 		td {
 			&:nth-of-type(2) {
@@ -57,6 +67,5 @@
 				min-width: 60px;
 			}
 		}
-
 	}
 }
