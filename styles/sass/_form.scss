@@ -3,7 +3,7 @@ form {
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	padding: 100px 0;
+	margin: 100px 0;
 	width: 70%;
 
 	input {
@@ -21,80 +21,3 @@ form {
 		letter-spacing: 1.5px;
 	}
 }
-
-// Flags Section
-// .currency-form {
-// 	position: absolute;
-// 	top: 50px;
-// 	right: 5%;
-// 	width: 100px;
-// }
-
-// fieldset {
-// 	width: 90px;
-// 	border: none;
-// 	display: flex;
-// 	flex-direction: column;
-// 	justify-self: center;
-// 	z-index: 99;
-
-// 	label {
-// 		display: block;
-// 		width: 40px;
-// 		height: 25px;
-// 		margin-bottom: 10px;
-// 		opacity: 0;
-// 		align-self: flex-end;
-
-// 		// turns on style only when the flags are visible 
-// 		&:focus {
-// 		cursor: pointer;
-// 		}
-		
-// 		img {
-// 			display: block;
-// 			width: 100%;
-// 			height: 100%;
-// 		}
-// 	}
-
-// 	input[type="radio"] {
-// 		opacity: 0;
-// 		margin: 0;
-// 	}
-
-// 	button {
-// 		background: none;
-// 		font-size: 0.8rem;
-// 		border: none;
-// 		margin-bottom: 10px;
-// 		background: #040002;
-// 		cursor: pointer;
-
-// 		&:focus,
-// 		&:active {
-// 			border: 1px solid $neon-blue;
-// 		}
-
-// 		a {
-// 			color: $white;
-// 			text-decoration: none;
-// 			pointer-events: none;
-// 			display: flex;
-// 			align-items: flex-end;
-// 			padding: 10px;
-// 		}
-
-// 		// Reveals flags on cursor click 
-// 		&:focus ~ label,
-// 		&:active ~ label {
-// 		opacity: 1;
-// 		}
-// 	}
-
-// 	input:active + label,
-// 	input:focus + label {
-// 		border: 1px dashed $white;
-// 		opacity: 1;
-// 	}
-// }
