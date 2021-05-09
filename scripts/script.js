@@ -22,6 +22,9 @@ currencyURL.search = new URLSearchParams({
   base: 'USD',
 });
 
+// Store link URL
+const linkURL = 'https://www.cheapshark.com/redirect?dealID=';
+
 // Create namespace object
 const app = {};
 
@@ -53,10 +56,11 @@ app.showModal = () => {
   modal.classList.toggle('invisible');
 }
 
-// Add event listeners
 app.init = () => {
-  app.getCurrencyRates('USD');
+  app.getCurrencyRates();
   app.toggleFlags();
+  
+  // Add event listeners
   form.addEventListener('submit', (event) => {
     event.preventDefault();
     app.lastGameSearched = searchTitle.value;
@@ -71,27 +75,6 @@ app.init = () => {
     app.getRandomGames(app.lastGameSearched, app.currentSearchPage);
   });
 }
-
-
-// fetches exchange rate from the API compared against USD and stores into an object 
-app.getCurrencyRates = (rate) => {
-  fetch(currencyURL)
-    .then((response) => response.json())
-    .then((jsonResponse) => {
-      const getRatesData = jsonResponse;
-
-      app.currencies.euro = getRatesData.rates['EUR'];
-      app.currencies.cad = getRatesData.rates['CAD'];
-
-      app.currencies.euro = app.cacheMoney(app.currencies.euro);
-      app.currencies.cad = app.cacheMoney(app.currencies.cad);
-    })
-}
-// Convert the exchange rates to 2 decimal spaces
-app.cacheMoney = (rate) => {
-  return Number(rate.toFixed(2));
-}
-
 
 // Function to fetch API using updated user params, and get games on Submit
 app.getRandomGames = (titleToSearch, searchResultsPage) => {
@@ -120,6 +103,25 @@ app.getRandomGames = (titleToSearch, searchResultsPage) => {
   }
 }
 
+// fetches exchange rate from the API compared against USD and stores into an object 
+app.getCurrencyRates = () => {
+  fetch(currencyURL)
+    .then((response) => response.json())
+    .then((jsonResponse) => {
+      const getRatesData = jsonResponse;
+
+      app.currencies.euro = getRatesData.rates['EUR'];
+      app.currencies.cad = getRatesData.rates['CAD'];
+
+      app.currencies.euro = app.cacheMoney(app.currencies.euro);
+      app.currencies.cad = app.cacheMoney(app.currencies.cad);
+    })
+}
+// Convert the exchange rates to 2 decimal spaces
+app.cacheMoney = (rate) => {
+  return Number(rate.toFixed(2));
+}
+
 app.selectExchangeRate = () => {
   // Setting default parameter for the initial game search 
   app.getGamePrices(app.returnedList, app.savedCurrency);
@@ -130,7 +132,7 @@ app.selectExchangeRate = () => {
       // update prices in real time
       app.getGamePrices(app.returnedList, app.currencies[flag.id]);
       app.savedCurrency = app.currencies[flag.id];
-  
+
       navFlags.classList.toggle('flags-toggle');
     })
     // Adding same function for keyboard accessibility
@@ -190,7 +192,7 @@ app.getGamePrices = (array, exchangeRate) => {
   // Push final currentGame object at end of loop
   finalGames.push(currentGame);
 
-  app.updateData(finalGames);
+  app.updateData(finalGames, exchangeRate);
 }
 
 // Get game discount and change link background color
@@ -211,8 +213,10 @@ app.getDiscount = (savings) => {
 }
 
 // Create table + Appends Data
-app.updateData = (gamesArray) => {
+app.updateData = (gamesArray, exchangeRate) => {
   gamesList.replaceChildren();
+  const symbol = (exchangeRate < 1) ? '€' : '$';
+  
   gamesArray.forEach(deal => {
     const tableRow = document.createElement('tr');
 
@@ -231,12 +235,13 @@ app.updateData = (gamesArray) => {
     steamDiscount = Number(steamSavings).toFixed(0);
     gogDiscount = Number(gogSavings).toFixed(0);
 
+    // Create new table row with all game info
     tableRow.innerHTML = `
-      <td><div class="gameCover"><img src="${deal.thumb}" alt="Cover art for ${title}"></div></td>
+      <td><div class="game-cover"><img src="${deal.thumb}" alt="Cover art for ${title}"></div></td>
       <td>${title}</td>
-      <td>$${normalPrice}</td>
-      <td><a href="https://www.cheapshark.com/redirect?dealID=${steamID}" savings="-${steamDiscount}%" class="storeLink ${app.getDiscount(steamSavings)}" target="_blank">$${steamPrice}</a></td>
-      <td><a href="https://www.cheapshark.com/redirect?dealID=${gogID}" savings="-${gogDiscount}%" class="storeLink ${app.getDiscount(gogSavings)}" target="_blank">$${gogPrice}</a></td>
+      <td>${symbol}${normalPrice}</td>
+      <td><a href="${linkURL}${steamID}" rel="noopener" savings="-${steamDiscount}%" class="store-link ${app.getDiscount(steamSavings)}" target="_blank">${symbol}${steamPrice}</a></td>
+      <td><a href="${linkURL}${gogID}" rel="noopener" savings="-${gogDiscount}%" class="store-link ${app.getDiscount(gogSavings)}" target="_blank">${symbol}${gogPrice}</a></td>
       `
     gamesList.appendChild(tableRow);
   });
@@ -244,7 +249,6 @@ app.updateData = (gamesArray) => {
   table.classList.remove('invisible');
   backToTop.classList.remove('invisible');
   modal.classList.add('invisible');
-  // app.showModal();
 
   // Check if API call returned full page of data, if so make LOAD MORE RESULTS visible
   if (app.returnedList.length === 60) {

@@ -72,7 +72,7 @@ table {
 	}
 }
 
-.gameCover {
+.game-cover {
 	width: 100%;
 	height: 70px;
 }
@@ -83,7 +83,7 @@ table {
 	width: 50px;
 }
 
-.steamLogo {
+.steam-logo {
 	border: 1px solid $white;
 	border-radius: 10px;
 }
@@ -128,7 +128,7 @@ table {
 	}
 }
 
-.storeLink {
+.store-link {
 	position: relative;
 	overflow: hidden;
 	// Element displays discount percentage of game, revealed on :hover

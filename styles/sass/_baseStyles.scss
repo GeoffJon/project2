@@ -1,8 +1,7 @@
 .wrapper {
-	width: 80%;
-	max-width: 1200px;
 	margin: 0 auto;
-	// top: 80px;
+	max-width: 1200px;
+	width: 80%;
 	display: flex;
 	flex-wrap: wrap;
 	align-items: center;
@@ -72,8 +71,6 @@ body:before {
 main {
 	// Keep footer from overlapping table
 	padding-bottom: 120px;
-	// min-height: 500px;
-	// position: relative;
 }
 
 .error-message {
@@ -89,7 +86,7 @@ img {
 	object-position: center 10%;
 }
 
-.buttonContainer {
+.button-container {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -97,7 +94,7 @@ img {
 	margin-top: 40px;
 }
 
-.backToTop {
+.back-to-top {
 	font-size: 1.5rem;
 	letter-spacing: 2px;
 	margin-top: 50px;

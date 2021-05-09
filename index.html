@@ -27,12 +27,10 @@
       <ul class="nav-links">
         <li><a href="#">Change Currency<i class="fas fa-sort-down"></i></a>
           <ul class="nav-flags flags-toggle">
-            <li class="currency" id="usd"><a href="#"><img src="./styles/assets/americanFlag.png"
-                  alt="american flag, change your currency setting here!"></a></li>
-            <li class="currency" id="cad"><a href="#"><img src="./styles/assets/canadianFlag.png"
-                  alt="canadian flag, change your currency setting here!"></a></li>
-            <li class="currency" id="euro"><a href="#"><img src="./styles/assets/europeFlag.png"
-                  alt="european flag, change your currency setting here!"></a></li>
+
+            <li class="currency" id="usd"><p class="sr-only">Select American dollar</p><a href="#"><img src="./styles/assets/americanFlag.png" alt="American flag"></a></li>
+            <li class="currency" id="cad"><p class="sr-only">Select Canadian dollar</p><a href="#"><img src="./styles/assets/canadianFlag.png" alt="Canadian flag"></a></li>
+            <li class="currency" id="euro"><p class="sr-only">Select Euro</p><a href="#"><img src="./styles/assets/europeFlag.png" alt="European Union flag"></a></li>
           </ul>
         </li>
       </ul>
@@ -60,21 +58,21 @@
             <th><i class="logo-neon fas fa-gamepad"></i></th>
             <th>Game title</th>
             <th>MSRP</th>
-            <th><img class="logo steamLogo" alt="logo for the Steam store front" src="styles/assets/steamLogo.webp">
+            <th><img class="logo steam-logo" alt="logo for the Steam store front" src="styles/assets/steamLogo.webp">
             </th>
             <th><img class="logo" alt="logo for the Good Old Games store front" src="styles/assets/gogLogo.png"></th>
           </tr>
         </thead>
-        <tbody id="gamesList" class="gamesList">
+        <tbody id="gamesList" class="games-list">
           <!-- rows and columns here -->
         </tbody>
       </table>
 
-      <div class="buttonContainer">
+      <div class="button-container">
         <button type="submit" id="loadMore" class="submit neon invisible">Load more results</button>
 
         <!-- Back to Top modal Button -->
-        <a href="#header" id="backToTop" class="backToTop invisible">
+        <a href="#header" id="backToTop" class="back-to-top invisible">
           <p class="neon">Back to top</p>
         </a>
       </div>
@@ -82,8 +80,8 @@
       <!-- modal window -->
       <div class="modal invisible" id="modal">
         <div class="modal-container">
+          
           <p>loading...</p>
-
           <div class="disc">
             <!-- spinning animation here -->
           </div>
@@ -93,13 +91,11 @@
 
   </main>
 
-  <!--wrapper-->
+    <!--wrapper ends-->
   </div>
 
-
-
   <footer>
-    <p>Created at <a href="junocollege.com">Juno College</a></p>
+    <p>Created at <a href="https://junocollege.com" rel="noopener" target="_blank">Juno College</a></p>
   </footer>
 
   <script src="./scripts/script.js"></script>
