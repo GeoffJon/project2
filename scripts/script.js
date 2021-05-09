@@ -240,8 +240,8 @@ app.updateData = (gamesArray, exchangeRate) => {
       <td><div class="game-cover"><img src="${deal.thumb}" alt="Cover art for ${title}"></div></td>
       <td>${title}</td>
       <td>${symbol}${normalPrice}</td>
-      <td><a href="${linkURL}${steamID}" savings="-${steamDiscount}%" class="store-link ${app.getDiscount(steamSavings)}" target="_blank">${symbol}${steamPrice}</a></td>
-      <td><a href="${linkURL}${gogID}" savings="-${gogDiscount}%" class="store-link ${app.getDiscount(gogSavings)}" target="_blank">${symbol}${gogPrice}</a></td>
+      <td><a href="${linkURL}${steamID}" rel="noopener" savings="-${steamDiscount}%" class="store-link ${app.getDiscount(steamSavings)}" target="_blank">${symbol}${steamPrice}</a></td>
+      <td><a href="${linkURL}${gogID}" rel="noopener" savings="-${gogDiscount}%" class="store-link ${app.getDiscount(gogSavings)}" target="_blank">${symbol}${gogPrice}</a></td>
       `
     gamesList.appendChild(tableRow);
   });
@@ -249,7 +249,6 @@ app.updateData = (gamesArray, exchangeRate) => {
   table.classList.remove('invisible');
   backToTop.classList.remove('invisible');
   modal.classList.add('invisible');
-  // app.showModal();
 
   // Check if API call returned full page of data, if so make LOAD MORE RESULTS visible
   if (app.returnedList.length === 60) {
