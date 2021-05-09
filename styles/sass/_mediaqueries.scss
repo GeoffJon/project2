@@ -33,10 +33,14 @@
 }
 		
 @media (max-width: 450px) {
+	nav {
+		justify-content: space-between;
+		padding: 0px 10px;
 
-	nav .logo-dragon {
-		font-size: 2.2rem;
-	}
+		.logo-dragon {
+			font-size: 2.2rem;
+		}
+	} 
 
 	form {
 		margin: 50px 0;
