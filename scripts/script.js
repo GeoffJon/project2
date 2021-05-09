@@ -22,6 +22,9 @@ currencyURL.search = new URLSearchParams({
   base: 'USD',
 });
 
+// Store link URL
+const linkURL = 'https://www.cheapshark.com/redirect?dealID=';
+
 // Create namespace object
 const app = {};
 
@@ -54,7 +57,7 @@ app.showModal = () => {
 }
 
 app.init = () => {
-  app.getCurrencyRates('USD');
+  app.getCurrencyRates();
   app.toggleFlags();
   
   // Add event listeners
@@ -129,7 +132,7 @@ app.selectExchangeRate = () => {
       // update prices in real time
       app.getGamePrices(app.returnedList, app.currencies[flag.id]);
       app.savedCurrency = app.currencies[flag.id];
-  
+
       navFlags.classList.toggle('flags-toggle');
     })
     // Adding same function for keyboard accessibility
@@ -189,7 +192,7 @@ app.getGamePrices = (array, exchangeRate) => {
   // Push final currentGame object at end of loop
   finalGames.push(currentGame);
 
-  app.updateData(finalGames);
+  app.updateData(finalGames, exchangeRate);
 }
 
 // Get game discount and change link background color
@@ -210,8 +213,10 @@ app.getDiscount = (savings) => {
 }
 
 // Create table + Appends Data
-app.updateData = (gamesArray) => {
+app.updateData = (gamesArray, exchangeRate) => {
   gamesList.replaceChildren();
+  const symbol = (exchangeRate < 1) ? '€' : '$';
+  
   gamesArray.forEach(deal => {
     const tableRow = document.createElement('tr');
 
@@ -234,9 +239,9 @@ app.updateData = (gamesArray) => {
     tableRow.innerHTML = `
       <td><div class="game-cover"><img src="${deal.thumb}" alt="Cover art for ${title}"></div></td>
       <td>${title}</td>
-      <td>$${normalPrice}</td>
-      <td><a href="https://www.cheapshark.com/redirect?dealID=${steamID}" savings="-${steamDiscount}%" class="store-link ${app.getDiscount(steamSavings)}" target="_blank">$${steamPrice}</a></td>
-      <td><a href="https://www.cheapshark.com/redirect?dealID=${gogID}" savings="-${gogDiscount}%" class="store-link ${app.getDiscount(gogSavings)}" target="_blank">$${gogPrice}</a></td>
+      <td>${symbol}${normalPrice}</td>
+      <td><a href="${linkURL}${steamID}" savings="-${steamDiscount}%" class="store-link ${app.getDiscount(steamSavings)}" target="_blank">${symbol}${steamPrice}</a></td>
+      <td><a href="${linkURL}${gogID}" savings="-${gogDiscount}%" class="store-link ${app.getDiscount(gogSavings)}" target="_blank">${symbol}${gogPrice}</a></td>
       `
     gamesList.appendChild(tableRow);
   });
