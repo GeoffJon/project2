@@ -130,7 +130,7 @@ app.selectExchangeRate = () => {
       // update prices in real time
       app.getGamePrices(app.returnedList, app.currencies[flag.id]);
       app.savedCurrency = app.currencies[flag.id];
-  
+
       navFlags.classList.toggle('flags-toggle');
     })
     // Adding same function for keyboard accessibility
@@ -139,7 +139,7 @@ app.selectExchangeRate = () => {
       if (event.keyCode === 13) {
         app.getGamePrices(app.returnedList, app.currencies[flag.id]);
         app.savedCurrency = app.currencies[flag.id];
-        
+
         navFlags.classList.toggle('flags-toggle');
       }
     })
@@ -232,11 +232,13 @@ app.updateData = (gamesArray) => {
     gogDiscount = Number(gogSavings).toFixed(0);
 
     tableRow.innerHTML = `
-      <td><div class="gameCover"><img src="${deal.thumb}" alt="Cover art for ${title}"></div></td>
-      <td>${title}</td>
-      <td>$${normalPrice}</td>
-      <td><a href="https://www.cheapshark.com/redirect?dealID=${steamID}" savings="-${steamDiscount}%" class="storeLink ${app.getDiscount(steamSavings)}" target="_blank">$${steamPrice}</a></td>
-      <td><a href="https://www.cheapshark.com/redirect?dealID=${gogID}" savings="-${gogDiscount}%" class="storeLink ${app.getDiscount(gogSavings)}" target="_blank">$${gogPrice}</a></td>
+      <tr>
+        <td><div class="gameCover"><img src="${deal.thumb}" alt="Cover art for ${title}"></div></td>
+        <td>${title}</td>
+        <td>$${normalPrice}</td>
+        <td><a href="https://www.cheapshark.com/redirect?dealID=${steamID}" savings="-${steamDiscount}%" class="storeLink ${app.getDiscount(steamSavings)}" target="_blank">$${steamPrice}</a></td>
+        <td><a href="https://www.cheapshark.com/redirect?dealID=${gogID}" savings="-${gogDiscount}%" class="storeLink ${app.getDiscount(gogSavings)}" target="_blank">$${gogPrice}</a></td>
+      </tr>
       `
     gamesList.appendChild(tableRow);
   });

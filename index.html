@@ -55,16 +55,20 @@
       <p id="errorMessage" class="error-message invisible">Sorry, something went wrong ☹️</p>
 
       <table class="invisible">
+        <caption class="sr-only">Compare game prices between online storefronts Steam and Good Old Games</caption>
         <thead>
           <tr>
-            <th><i class="logo-neon fas fa-gamepad"></i></th>
-            <th>Game title</th>
-            <th>MSRP</th>
-            <th><img class="logo steamLogo" alt="logo for the Steam store front" src="styles/assets/steamLogo.webp">
+            <th scope="col"><i class="logo-neon fas fa-gamepad"></i><span class="sr-only">Thumbnail</span></th>
+            <th scope="col">Game title</th>
+            <th scope="col">MSRP</th>
+            <th scope="col"><img class="logo steamLogo" alt="logo for the Steam store front"
+                src="styles/assets/steamLogo.webp"><span class="sr-only">Steam price</span>
             </th>
-            <th><img class="logo" alt="logo for the Good Old Games store front" src="styles/assets/gogLogo.png"></th>
+            <th scope="col"><img class="logo" alt="logo for the Good Old Games store front"
+                src="styles/assets/gogLogo.png"><span class="sr-only">GOG price</span></th>
           </tr>
         </thead>
+
         <tbody id="gamesList" class="gamesList">
           <!-- rows and columns here -->
         </tbody>
