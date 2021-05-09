@@ -232,11 +232,11 @@ app.updateData = (gamesArray) => {
     gogDiscount = Number(gogSavings).toFixed(0);
 
     tableRow.innerHTML = `
-      <td><div class="gameCover"><img src="${deal.thumb}" alt="Cover art for ${title}"></div></td>
+      <td><div class="game-cover"><img src="${deal.thumb}" alt="Cover art for ${title}"></div></td>
       <td>${title}</td>
       <td>$${normalPrice}</td>
-      <td><a href="https://www.cheapshark.com/redirect?dealID=${steamID}" savings="-${steamDiscount}%" class="storeLink ${app.getDiscount(steamSavings)}" target="_blank">$${steamPrice}</a></td>
-      <td><a href="https://www.cheapshark.com/redirect?dealID=${gogID}" savings="-${gogDiscount}%" class="storeLink ${app.getDiscount(gogSavings)}" target="_blank">$${gogPrice}</a></td>
+      <td><a href="https://www.cheapshark.com/redirect?dealID=${steamID}" savings="-${steamDiscount}%" class="store-link ${app.getDiscount(steamSavings)}" target="_blank">$${steamPrice}</a></td>
+      <td><a href="https://www.cheapshark.com/redirect?dealID=${gogID}" savings="-${gogDiscount}%" class="store-link ${app.getDiscount(gogSavings)}" target="_blank">$${gogPrice}</a></td>
       `
     gamesList.appendChild(tableRow);
   });
