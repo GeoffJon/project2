@@ -397,6 +397,7 @@ html {
   width: 80%;
   max-width: 1200px;
   margin: 0 auto;
+  top: 80px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -409,6 +410,7 @@ html {
       -ms-flex-pack: center;
           justify-content: center;
   flex-wrap: wrap;
+  position: relative;
 }
 
 * {
@@ -424,7 +426,7 @@ html {
 header {
   background: url(./assets/headerBackground.jpeg) no-repeat;
   background-size: cover;
-  height: 20vh;
+  min-height: 20vh;
   margin-bottom: 20px;
   text-align: center;
 }
@@ -468,7 +470,6 @@ body:before {
 
 main {
   padding-bottom: 120px;
-  position: relative;
 }
 
 .error-message {
@@ -821,6 +822,9 @@ table a {
 @media (max-width: 450px) {
   nav .logo-dragon {
     font-size: 2.2rem;
+  }
+  form {
+    margin: 50px 0;
   }
   form input {
     font-size: 0.8rem;

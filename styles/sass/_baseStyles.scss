@@ -2,11 +2,13 @@
 	width: 80%;
 	max-width: 1200px;
 	margin: 0 auto;
+	top: 80px;
 	display: flex;
 	flex-wrap: wrap;
 	align-items: center;
 	justify-content: center;
 	flex-wrap: wrap;
+	position: relative;
 }
 
 * {
@@ -22,7 +24,7 @@ html {
 header {
 	background: url(./assets/headerBackground.jpeg) no-repeat;
 	background-size: cover;
-	height: 20vh;
+	min-height: 20vh;
 	margin-bottom: 20px;
 	text-align: center;
 
@@ -66,7 +68,8 @@ body:before {
 main {
 	// Keep footer from overlapping table
 	padding-bottom: 120px;
-	position: relative;
+	// min-height: 500px;
+	// position: relative;
 }
 
 .error-message {
