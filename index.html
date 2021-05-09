@@ -28,9 +28,18 @@
         <li><a href="#">Change Currency<i class="fas fa-sort-down"></i></a>
           <ul class="nav-flags flags-toggle">
 
-            <li class="currency" id="usd"><p class="sr-only">Select American dollar</p><a href="#"><img src="./styles/assets/americanFlag.png" alt="American flag"></a></li>
-            <li class="currency" id="cad"><p class="sr-only">Select Canadian dollar</p><a href="#"><img src="./styles/assets/canadianFlag.png" alt="Canadian flag"></a></li>
-            <li class="currency" id="euro"><p class="sr-only">Select Euro</p><a href="#"><img src="./styles/assets/europeFlag.png" alt="European Union flag"></a></li>
+            <li class="currency" id="usd">
+              <p class="sr-only">Select American dollar</p><a href="#"><img src="./styles/assets/americanFlag.png"
+                  alt="American flag"></a>
+            </li>
+            <li class="currency" id="cad">
+              <p class="sr-only">Select Canadian dollar</p><a href="#"><img src="./styles/assets/canadianFlag.png"
+                  alt="Canadian flag"></a>
+            </li>
+            <li class="currency" id="euro">
+              <p class="sr-only">Select Euro</p><a href="#"><img src="./styles/assets/europeFlag.png"
+                  alt="European Union flag"></a>
+            </li>
           </ul>
         </li>
       </ul>
@@ -53,17 +62,22 @@
       <p id="errorMessage" class="error-message invisible">Sorry, something went wrong ☹️</p>
 
       <table class="invisible">
+        <caption class="sr-only">Compare game prices between online storefronts Steam and Good Old Games</caption>
         <thead>
           <tr>
-            <th><i class="logo-neon fas fa-gamepad"></i></th>
-            <th>Game title</th>
-            <th>MSRP</th>
-            <th><img class="logo steam-logo" alt="logo for the Steam store front" src="styles/assets/steamLogo.webp">
+            <th scope="col"><i class="logo-neon fas fa-gamepad"></i><span class="sr-only">Cover-art Thumbnail</th>span>
             </th>
-            <th><img class="logo" alt="logo for the Good Old Games store front" src="styles/assets/gogLogo.png"></th>
+            <th scope="col">Game title</th>
+            <th scope="col">MSRP</th>
+            <th scope="col"><img class="logo steamLogo" alt="logo for the Steam store front"
+                src="styles/assets/steamLogo.webp"><span class="sr-only">Steam price</span>
+            </th>
+            <th scope="col"><img class="logo" alt="logo for the Good Old Games store front"
+                src="styles/assets/gogLogo.png"><span class="sr-only">GOG price</span></th>
           </tr>
         </thead>
-        <tbody id="gamesList" class="games-list">
+
+        <tbody id="gamesList" class="gamesList">
           <!-- rows and columns here -->
         </tbody>
       </table>
@@ -80,7 +94,7 @@
       <!-- modal window -->
       <div class="modal invisible" id="modal">
         <div class="modal-container">
-          
+
           <p>loading...</p>
           <div class="disc">
             <!-- spinning animation here -->
@@ -91,7 +105,7 @@
 
   </main>
 
-    <!--wrapper ends-->
+  <!--wrapper ends-->
   </div>
 
   <footer>

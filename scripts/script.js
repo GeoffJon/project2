@@ -59,7 +59,7 @@ app.showModal = () => {
 app.init = () => {
   app.getCurrencyRates();
   app.toggleFlags();
-  
+
   // Add event listeners
   form.addEventListener('submit', (event) => {
     event.preventDefault();
@@ -141,7 +141,7 @@ app.selectExchangeRate = () => {
       if (event.keyCode === 13) {
         app.getGamePrices(app.returnedList, app.currencies[flag.id]);
         app.savedCurrency = app.currencies[flag.id];
-        
+
         navFlags.classList.toggle('flags-toggle');
       }
     })
@@ -216,7 +216,7 @@ app.getDiscount = (savings) => {
 app.updateData = (gamesArray, exchangeRate) => {
   gamesList.replaceChildren();
   const symbol = (exchangeRate < 1) ? '€' : '$';
-  
+
   gamesArray.forEach(deal => {
     const tableRow = document.createElement('tr');
 
