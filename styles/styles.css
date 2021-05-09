@@ -466,8 +466,8 @@ body:before {
   right: 0;
   bottom: 0;
   z-index: -1;
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(20%, black), color-stop(60%, midnightblue), to(black));
-  background: linear-gradient(black 20%, midnightblue 60%, black 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(30%, black), color-stop(60%, midnightblue), to(black));
+  background: linear-gradient(black 30%, midnightblue 60%, black 100%);
 }
 
 main {
@@ -538,6 +538,7 @@ footer p {
 
 footer a {
   color: #0099ff;
+  text-decoration: none;
 }
 
 nav {
@@ -822,6 +823,12 @@ table a {
 }
 
 @media (max-width: 450px) {
+  nav {
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    padding: 0px 10px;
+  }
   nav .logo-dragon {
     font-size: 2.2rem;
   }

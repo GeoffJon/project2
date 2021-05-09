@@ -65,7 +65,7 @@ body:before {
 	right: 0;
 	bottom: 0;
 	z-index: -1;
-	background: linear-gradient(black 20%, midnightblue 60%, black 100%);
+	background: linear-gradient(black 30%, midnightblue 60%, black 100%);
 }
 
 main {
@@ -125,5 +125,6 @@ footer {
 
 	a {
 		color: $neon-blue;
+		text-decoration: none;
 	}
 }
