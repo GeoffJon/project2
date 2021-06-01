@@ -35,7 +35,9 @@ app.savedCurrency = 1;
 
 // Stores the exchange rates
 app.currencies = {
-  usd: 1
+  usd: 1,
+  euro: 0.82,
+  cad: 1.2
 }
 
 // Store IDs used for filtering
@@ -115,6 +117,9 @@ app.getCurrencyRates = () => {
 
       app.currencies.euro = app.cacheMoney(app.currencies.euro);
       app.currencies.cad = app.cacheMoney(app.currencies.cad);
+    })
+    .catch((err) => {
+      console.log(err);
     })
 }
 // Convert the exchange rates to 2 decimal spaces
